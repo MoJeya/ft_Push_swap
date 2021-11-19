@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:09:18 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/11/18 18:45:04 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/11/19 12:51:37 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 /*
 	TODO:
-		(MOHAN) Fix Convert String Function!
+		(Mohan) list init fucntion fixen!
+!			(info)liste wird nicht richtig inizalieseirt
+		////(MOHAN) Fix Convert String Function!
 		////(MOHAN) build Opperation with linked list
 		(Mohan) Learn about linked lilst (again) for maximum effecity
 */
@@ -36,28 +38,22 @@ static void	init_listab(t_node *sa, t_node *sb, int argc, char *argv[])
 	}
 }
 
-static int	ft_convert_str(const char *str, t_node *sa, t_node *sb)
+static void	ft_convert_str(const char *str, t_node *st_a, t_node *st_b)
 {
-	int				wc;
 	int				cnt;
 	char			**tmp;
-	int				tmp_num;
 
-	wc = 0;
 	cnt = 0;
-	*tmp = *ft_split(str, ' ');
-	wc = ft_strlen(*tmp);
-	while (wc != 0)
+	tmp = ft_split(str, ' ');
+	ft_printf("Stacks initzialisation is done!\nStack A:			Satck B:\n");
+	while (tmp[cnt] != NULL)
 	{
-		printf("tmp: %s\n", *tmp);
-		tmp_num = ft_atoi(tmp[cnt]);
-		init_list_a(sa, tmp_num);
-		inti_list_b(sb);
+		init_list_a(st_a, ft_atoi(tmp[cnt]));
+		inti_list_b(st_b);
+		ft_printf("[%d]				[%d]\n", st_a->data, st_b->data);
 		cnt++;
-		wc--;
 	}
-	//free(tmp);
-	return (0);
+	free(tmp);
 }
 
 int	main(int argc, char *argv[])
@@ -78,9 +74,14 @@ int	main(int argc, char *argv[])
 		ft_printf("Pleas enter the Numbers!\n");
 		return (1);
 	}
-	else if (argc > 1)
+	else if (argc > 3)
 		init_listab(stack_a, stack_b, argc, argv);
 	else if (argc == 2)
+	{
+		ft_printf("The argument will be worked with!\n");
 		ft_convert_str(argv[1], stack_a, stack_b);
+	}
+	ft_pb(stack_a, stack_b);
+	ft_print_list(stack_a, stack_b);
 	return (0);
 }

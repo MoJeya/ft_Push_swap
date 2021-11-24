@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:35:03 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/11/24 14:40:42 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/11/24 15:00:46 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_print_list(t_node *st_a, t_node *st_b)
 	}
 }
 
-void	set_arr(char *argv[], int argc, t_node **head, int flag)
+void	convert_str_lst(char *argv[], int argc, t_node **head, int flag)
 {
 	int		i;
 	char	**tmp;
@@ -49,14 +49,16 @@ void	set_arr(char *argv[], int argc, t_node **head, int flag)
 	i = 0;
 	tmp = ft_split(argv[1], ' ');
 	while (tmp[i] != NULL)
+		i++;
+	while (i - 1 >= 0)
 	{
 		if (flag == 1)
-			new = create_node(ft_atoi(tmp[i]));
+			new = create_node(ft_atoi(tmp[i - 1]));
 		else
 			new = create_node(0);
 		new->next = *head;
 		*head = new;
-		i++;
+		i--;
 	}
 	ft_printf("\n");
 }

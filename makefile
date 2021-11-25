@@ -17,13 +17,10 @@ linked_obj:
 	make -C ./inc/ft_printf
 	make -C ./inc/ft_printf/libft
 
-clean: $(NAME)
-	rm -rf $(NAME)
-	rm -rf ./inc/ft_printf/libftprintf.a
-	rm -rf ./inc/ft_printf/libft/libft.a
+clean:
+	rm -f ./inc/ft_printf/*.o ./inc/ft_printf/libft/*.o
 
 fclean:	clean
-	rm -rf ./inc/ft_printf/*.o
-	rm -rf ./inc/ft_printf/libft/*.o
+	rm -f $(NAME) ./inc/ft_printf/libftprintf.a ./inc/ft_printf/libft/libft.a
 
 re: fclean all

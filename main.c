@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:09:18 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/11/24 15:00:33 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/11/25 14:52:58 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int	main(int argc, char *argv[])
 	else if (argc == 2)
 	{
 		ft_printf("The argument will be worked with!\n");
-		convert_str_lst(argv, argc, &stack_a, 1);
-		convert_str_lst(argv, argc, &stack_b, 0);
+		convert_str_lst(argv, &stack_a, 1);
+		convert_str_lst(argv, &stack_b, 0);
 	}
 	ft_print_list(stack_a, stack_b);
 	return (0);

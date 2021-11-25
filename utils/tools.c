@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:35:03 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/11/24 15:00:46 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/11/25 14:52:40 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_print_list(t_node *st_a, t_node *st_b)
 	}
 }
 
-void	convert_str_lst(char *argv[], int argc, t_node **head, int flag)
+void	convert_str_lst(char *argv[], t_node **head, int flag)
 {
 	int		i;
 	char	**tmp;

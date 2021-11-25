@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:55:51 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/11/25 14:52:41 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/11/25 20:49:20 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ typedef struct Node
 }	t_node;
 
 void	ft_print_list(t_node *st_a, t_node *st_b);
-void	convert_str_lst(char *argv[], t_node **head, int flag);
+void	convert_str_lst(char *argv[], t_node **head);
+void	ft_pb(t_node **st_a, t_node **st_b);
+void	ft_pa(t_node **st_a, t_node **st_b);
 t_node	*create_node(int num);
 
 #endif

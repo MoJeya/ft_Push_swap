@@ -1,6 +1,6 @@
-NAME = push_swap
+NAME =		push_swap
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS =	-Wall -Wextra -Werror
 
 SOURCE =	main.c \
 			./utils/tools.c ./opps/push_algo.c \
@@ -8,9 +8,9 @@ SOURCE =	main.c \
 DPNCY =		./inc/ft_printf/libftprintf.a \
 			./inc/ft_printf/libft/libft.a \
 
-all: $(NAME)
+all:	$(NAME)
 
-$(NAME): $(SOURCE) linked_obj
+$(NAME): linked_obj
 	gcc $(CFLAGS) -o $(NAME) $(SOURCE) $(DPNCY)
 
 linked_obj:

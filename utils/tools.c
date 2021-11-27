@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:35:03 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/11/27 15:01:34 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/11/27 17:01:13 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	ft_print_list(t_node *st_a, t_node *st_b)
 
 	tmp_a = st_a;
 	tmp_b = st_b;
-	if (st_a == NULL)
-		ft_printf("Unable to initzailise Memory!\n");
 	ft_printf("A:	 B:\n");
 	while (tmp_a != NULL || tmp_b != NULL)
 	{

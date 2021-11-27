@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:09:18 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/11/25 20:52:51 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/11/27 16:52:30 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,17 @@ int	main(int argc, char *argv[])
 	}
 	ft_pb(&stack_a, &stack_b);
 	ft_pb(&stack_a, &stack_b);
+	ft_pb(&stack_a, &stack_b);
+	ft_pb(&stack_a, &stack_b);
 	ft_pa(&stack_a, &stack_b);
 	ft_pa(&stack_a, &stack_b);
+	ft_pa(&stack_a, &stack_b);
+	//ft_print_list(stack_a, stack_b);
+	ft_pb(&stack_a, &stack_b);
+	ft_print_list(stack_a, stack_b);
+	ft_sa(&stack_a);
+	ft_print_list(stack_a, stack_b);
+	ft_ss(&stack_a, &stack_b);
+	ft_print_list(stack_a, stack_b);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:09:18 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/11/27 17:03:25 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/11/28 18:36:02 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 /*
 	TODO:
-		(Mohan) list init fucntion fixen!
-!			(info)liste wird nicht richtig inizalieseirt
+		(Mohan) Opperation's coner cases has to be done
+		!(Mohan) finsih Operations
+		////(Mohan) list init fucntion fixen!
+		////	(info)liste wird nicht richtig inizalieseirt
 		////(MOHAN) Fix Convert String Function!
-		////(MOHAN) build Opperation with linked list
+		////(MOHAN) build Opperotattion with linked list
 		(Mohan) Learn about linked lilst (again) for maximum effecity
 */
 
@@ -52,10 +54,10 @@ int	main(int argc, char *argv[])
 	{
 		creat_lst(argc, argv, &stack_a);
 	}
-	ft_pb(&stack_a, &stack_b);
-	ft_pb(&stack_a, &stack_b);
 	ft_print_list(stack_a, stack_b);
-	ft_ss(&stack_a, &stack_b);
+	ft_rotat(&stack_a, 'a');
+	ft_print_list(stack_a, stack_b);
+	ft_rotat(&stack_a, 'a');
 	ft_print_list(stack_a, stack_b);
 	return (0);
 }

@@ -3,7 +3,7 @@ NAME =		push_swap
 CFLAGS =	-Wall -Wextra -Werror
 
 SOURCE =	main.c \
-			./utils/tools.c ./opps/push_algo.c ./opps/swap_algo.c \
+			./utils/tools.c ./opps/push_algo.c ./opps/swap_algo.c ./opps/rot_algo.c \
 
 DPNCY =		./inc/ft_printf/libftprintf.a \
 			./inc/ft_printf/libft/libft.a \

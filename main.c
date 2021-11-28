@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:09:18 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/11/28 18:36:02 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/11/28 18:40:47 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 	TODO:
 		(Mohan) Opperation's coner cases has to be done
-		!(Mohan) finsih Operations
+		!(Mohan) finsih Operations rr and rrr
 		////(Mohan) list init fucntion fixen!
 		////	(info)liste wird nicht richtig inizalieseirt
 		////(MOHAN) Fix Convert String Function!

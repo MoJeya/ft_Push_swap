@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:35:03 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/11/27 17:01:13 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/11/29 12:47:16 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ t_node	*create_node(int num)
 	return (tmp);
 }
 
-void	ft_print_list(t_node *st_a, t_node *st_b)
+void	ft_print_list(t_opp *opp)
 {
 	t_node			*tmp_a;
 	t_node			*tmp_b;
 
-	tmp_a = st_a;
-	tmp_b = st_b;
+	tmp_a = opp->stack_a;
+	tmp_b = opp->stack_b;
 	ft_printf("A:	 B:\n");
 	while (tmp_a != NULL || tmp_b != NULL)
 	{
@@ -46,28 +46,3 @@ void	ft_print_list(t_node *st_a, t_node *st_b)
 		ft_printf("\n");
 	}
 }
-
-//void	convert_str_lst(char *argv[], t_node **head)
-//{
-//	int		i;
-//	char	**tmp;
-//	t_node	*new;
-
-//	i = 0;
-//	tmp = ft_split(argv[1], ' ');
-//	while (tmp[i] != NULL)
-//		i++;
-//	while (i - 1 >= 0)
-//	{
-//			new = create_node(ft_atoi(tmp[i - 1]));
-//		new->next = *head;
-//		*head = new;
-//		i--;
-//	}
-//	ft_printf("\n");
-//}
-
-/*
- * This function should initzialase nodes on
-	a list
-*/

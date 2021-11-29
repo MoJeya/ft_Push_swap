@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:03:51 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/11/27 16:51:50 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/11/29 14:08:16 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,40 +17,35 @@
  * has only one element then it should do nothing
 */
 
-t_node	*swap_stack(t_node **st_from)
+static t_node	*swap_stack(t_node **st_from)
 {
-	t_node	*head;
+	int	temp;
 
-	head = NULL;
-	head = malloc(sizeof(t_node));
 	if (!(*st_from) || (*st_from)->next == NULL)
 	{
 		return ((*st_from));
 	}
 	else
 	{
-		head->data = (*st_from)->data;
+		temp = (*st_from)->data;
 		(*st_from)->data = (*st_from)->next->data;
-		(*st_from)->next->data = head->data;
+		(*st_from)->next->data = temp;
 	}
-	return (head);
+	return ((*st_from));
 }
 
-void	ft_sa(t_node **st_a)
+void	ft_sa(t_opp *opp)
 {
-	ft_printf("sa\n");
-	swap_stack(st_a);
+	swap_stack(&opp->stack_a);
 }
 
-void	ft_sb(t_node **st_b)
+void	ft_sb(t_opp *opp)
 {
-	ft_printf("sb\n");
-	swap_stack(st_b);
+	swap_stack(&opp->stack_b);
 }
 
-void	ft_ss(t_node **st_a, t_node **st_b)
+void	ft_ss(t_opp *opp)
 {
-	ft_printf("ss\n");
-	swap_stack(st_a);
-	swap_stack(st_b);
+	swap_stack(&opp->stack_a);
+	swap_stack(&opp->stack_b);
 }

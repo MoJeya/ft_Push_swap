@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:09:18 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/11/28 18:40:47 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/11/29 14:19:36 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ static void	creat_lst(int argc, char *argv[], t_node **head)
 
 int	main(int argc, char *argv[])
 {
-	t_node	*stack_a;
-	t_node	*stack_b;
+	t_opp	*opps;
 
-	stack_a = NULL;
-	stack_b = NULL;
+	opps = (t_opp *)malloc(sizeof(t_opp));
+	opps->stack_a = NULL;
+	opps->stack_b = NULL;
 	if (argc == 1)
 	{
 		ft_printf("Pleas enter the Numbers!\n");
@@ -52,12 +52,16 @@ int	main(int argc, char *argv[])
 	}
 	else if (argc > 3)
 	{
-		creat_lst(argc, argv, &stack_a);
+		creat_lst(argc, argv, &opps->stack_a);
+		//opps->op = " ";
 	}
-	ft_print_list(stack_a, stack_b);
-	ft_rotat(&stack_a, 'a');
-	ft_print_list(stack_a, stack_b);
-	ft_rotat(&stack_a, 'a');
-	ft_print_list(stack_a, stack_b);
+	ft_print_list(opps);
+	ft_ss(opps);
+	ft_pb(opps);
+	ft_pb(opps);
+	ft_print_list(opps);
+	ft_rr(&opps->stack_a);
+	ft_print_list(opps);
+	system("leaks push_swap");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:09:18 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/11/29 15:54:58 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:52:28 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,34 +32,45 @@ static void	creat_lst(int argc, char *argv[], t_node **head)
 	j = argc - 1;
 	while (j >= 1)
 	{
-		tmp = create_node(ft_atoi(argv[j]));
-		tmp->next = *head;
-		*head = tmp;
+		if (ft_isalnum(get_char(argv[j]) == 0))
+		{
+			tmp = create_node(ft_atoi(argv[j]));
+			tmp->next = *head;
+			*head = tmp;
+		}
+		else
+		{
+			ft_printf("Error\n");
+			exit(1);
+		}
 		j--;
 	}
 }
 
-void	convert_str_lst(const char *str, t_node	**head)
+t_node	*convert_str_lst(const char *str, t_node	**head)
 {
 	char	**tmp;
 	t_node	*lst;
 
 	tmp = ft_split(str, ' ');
-	(*head) = create_node(ft_atoi(*tmp));
 	while (*tmp != NULL)
 	{
-		//lst = create_node(ft_atoi(*tmp));
-		//lst->next = *head;
-		//*head = lst;
-		lst = create_node(ft_atoi(*tmp));
-		if ((*head)->next == NULL)
-			(*head)->next = lst;
-		while ((*head)->next != NULL)
-			(*head) = (*head)->next;
-		free(*tmp);
+		if (ft_isalnum(get_char(*tmp)) == 0)
+		{
+			lst = create_node(ft_atoi(*tmp));
+			lst->next = *head;
+			*head = lst;
+		}
+		else
+		{
+			ft_printf("Error\n");
+			exit(1);
+		}
+		free (*tmp);
 		tmp++;
 	}
-	free(lst);
+	revers_lst(head);
+	return ((*head));
 }
 
 int	main(int argc, char *argv[])
@@ -77,13 +88,14 @@ int	main(int argc, char *argv[])
 	{
 		creat_lst(argc, argv, &opps->stack_a);
 	}
+	else
+		ft_printf("argument invalid!\n");
 	ft_print_list(opps);
 	ft_ss(opps);
 	ft_pb(opps);
-	ft_pb(opps);
 	ft_print_list(opps);
-	ft_rot(&opps->stack_a);
+	ft_rot(&opps->stack_a); //!hat leak
 	ft_print_list(opps);
-	system("leaks push_swap");
+	system("leaks checker");
 	return (0);
 }

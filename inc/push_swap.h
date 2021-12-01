@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:55:51 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/11/29 14:32:08 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:45:30 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void	ft_rr(t_opp *opp);
 void	ft_ss(t_opp *opp);
 void	ft_pb(t_opp *opp);
 void	ft_pa(t_opp *opp);
-
+t_node	*get_lstlast(t_node **node);
 t_node	*create_node(int num);
+void	revers_lst(t_node **head);
+char	get_char(char *str);
 
 #endif

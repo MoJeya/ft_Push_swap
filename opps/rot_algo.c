@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 15:33:29 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/01 17:54:00 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:53:03 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 	2. head->next should point to start from stack
 	3. travers stack by one
 */
-
 static t_node	*rotat_stack_down(t_node **stack)
 {
 	t_node	*head;
@@ -37,6 +36,9 @@ static t_node	*rotat_stack_down(t_node **stack)
 	(*stack) = head;
 	return ((*stack));
 }
+/**
+ * !hat leak
+*/
 
 static t_node	*rotat_stack_up(t_node **stack)
 {
@@ -53,18 +55,20 @@ static t_node	*rotat_stack_up(t_node **stack)
 		lastnode = lastnode->next;
 	}
 	lastnode->next = newnode;
-	free (newnode);
+	//!free (newnode);
 	return (lastnode);
 }
 
 void	ft_revrot(t_node **stack)
 {
 	rotat_stack_down(stack);
+	ft_printf(" rra ");
 }
 
 void	ft_rot(t_node **stack)
 {
 	rotat_stack_up(stack);
+	ft_printf(" ra ");
 }
 
 void	ft_rr(t_opp *opp)

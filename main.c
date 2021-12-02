@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:09:18 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/01 17:52:28 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/02 21:40:20 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	creat_lst(int argc, char *argv[], t_node **head)
 	j = argc - 1;
 	while (j >= 1)
 	{
-		if (ft_isalnum(get_char(argv[j]) == 0))
+		if (get_char(argv[j]) != 0)
 		{
 			tmp = create_node(ft_atoi(argv[j]));
 			tmp->next = *head;
@@ -55,7 +55,7 @@ t_node	*convert_str_lst(const char *str, t_node	**head)
 	tmp = ft_split(str, ' ');
 	while (*tmp != NULL)
 	{
-		if (ft_isalnum(get_char(*tmp)) == 0)
+		if (get_char(*tmp) != 0)
 		{
 			lst = create_node(ft_atoi(*tmp));
 			lst->next = *head;
@@ -90,12 +90,8 @@ int	main(int argc, char *argv[])
 	}
 	else
 		ft_printf("argument invalid!\n");
+	check_which_op(opps);
 	ft_print_list(opps);
-	ft_ss(opps);
-	ft_pb(opps);
-	ft_print_list(opps);
-	ft_rot(&opps->stack_a); //!hat leak
-	ft_print_list(opps);
-	system("leaks checker");
+	//system("leaks checker");
 	return (0);
 }

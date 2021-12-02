@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 12:08:56 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/11/29 14:21:32 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/02 22:52:03 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ static void	pop_stack(t_node **st_from, t_node **st_to)
 void	ft_pb(t_opp *opp)
 {
 	pop_stack(&opp->stack_a, &opp->stack_b);
+	ft_printf(" pb ");
 }
 
 void	ft_pa(t_opp *opp)
 {
 	pop_stack(&opp->stack_b, &opp->stack_a);
+	ft_printf(" pa ");
 }

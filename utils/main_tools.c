@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:35:03 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/01 17:51:10 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/02 18:11:16 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,12 @@ void	ft_print_list(t_opp *opp)
 	}
 }
 
-char	get_char(char *str)
+int	get_char(char *str)
 {
-	char	c;
+	int	i;
 
-	c = str[0];
-	return (c);
+	i = 0;
+	while (ft_isdigit(str[i]) == 1)
+		i++;
+	return (i);
 }

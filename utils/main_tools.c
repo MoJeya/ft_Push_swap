@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   main_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:35:03 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/02 18:11:16 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/04 13:19:04 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,6 @@ t_node	*create_node(int num)
 	tmp->data = num;
 	tmp->next = NULL;
 	return (tmp);
-}
-
-t_node	*get_lstlast(t_node **node)
-{
-	t_node	 *current;
-
-	current = create_node((*node)->data);
-	current->next = (*node);
-	(*node) = current;
-	return ((*node));
 }
 
 void	revers_lst(t_node **head)

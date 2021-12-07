@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:09:18 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/02 21:40:20 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/04 17:11:38 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	main(int argc, char *argv[])
 	else
 		ft_printf("argument invalid!\n");
 	check_which_op(opps);
-	ft_print_list(opps);
+	//ft_print_list(opps);
 	//system("leaks checker");
 	return (0);
 }

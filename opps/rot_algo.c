@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 15:33:29 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/02 22:53:03 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/06 17:38:24 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ static t_node	*rotat_stack_up(t_node **stack)
 void	ft_revrot(t_node **stack)
 {
 	rotat_stack_down(stack);
-	ft_printf(" rra ");
+	//ft_printf(" rra ");
 }
 
 void	ft_rot(t_node **stack)
 {
 	rotat_stack_up(stack);
-	ft_printf(" ra ");
+	//ft_printf(" ra ");
 }
 
 void	ft_rr(t_opp *opp)

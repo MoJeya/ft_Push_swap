@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:19:27 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/02 23:23:51 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/07 20:11:57 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,51 @@ void	swap_three(t_opp *op)
 		ft_revrot(&op->stack_a);
 }
 
+void	swap_x(t_opp *op)
+{
+	int			h_first;
+	int			h_second;
+	int			tresh_hold;
+	int			cnt;
+
+	h_first = 0;
+	//h_second = 0;
+	while (list_lenght(op, 1) > 0)
+	{
+		tresh_hold = 20;
+		cnt = 0;
+		//h_first = ft_findmin_val(op, cnt);
+		h_second = ft_findrmin_val(op->stack_a, cnt);
+		while (tresh_hold <= 100)
+		{
+			if (cnt < tresh_hold)
+			{
+				//h_second = ft_findrmin_val(op->stack_a, cnt);
+				cnt++;
+				//h_first = comp_data(op, h_first, ft_findmin_val(op, cnt));
+				h_second = comp_data(op, h_second, ft_findrmin_val(op->stack_a, cnt));
+			}
+			//ft_printf("hold first: %d\n", h_second);
+			//ft_printf("min value is %d\n", get_data_on_pos(op, h_second));
+			//ft_printf("hold second: %d\n", h_second);
+			tresh_hold += 20;
+		}
+		break ;
+	}
+	//ft_print_list(op);
+}
+
 void	check_which_op(t_opp *op)
 {
 	int	ce;
 
-	ce = list_lenght(op);
+	ce = list_lenght(op, 1);
 	if (ce == 3)
 		swap_three(op);
-	if (ce == 5)
+	else if (ce == 5)
 		swap_five(op);
-	//else
-	//	ft_swap_x(&op->stack_a, &op->stack_b);
+	else
+		swap_x(op);
 	//ft_printf("length of list: %d\n", ce);
 	ft_printf("\n");
 }

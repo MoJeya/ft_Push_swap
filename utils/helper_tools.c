@@ -6,19 +6,23 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:24:37 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/02 22:18:32 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/06 19:05:31 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	list_lenght(t_opp *op)
+int	list_lenght(t_opp *op, int stack_option)
 {
 	int		len;
 	t_node	*tmp;
 
+	tmp = NULL;
 	len = 0;
-	tmp = op->stack_a;
+	if (stack_option == 1)
+		tmp = op->stack_a;
+	else if (stack_option == 2)
+		tmp = op->stack_b;
 	while (tmp != NULL)
 	{
 		tmp = tmp->next;
@@ -37,8 +41,6 @@ int	max_n(t_opp *op)
 	while (tmp->next != NULL)
 	{
 		tmp = tmp->next;
-		//if (tmp->next == NULL)
-		//	break ;
 		if (max_val < tmp->data)
 			max_val = tmp->data;
 	}
@@ -55,8 +57,6 @@ int	min_n(t_opp *op)
 	while (tmp->next != NULL)
 	{
 		tmp = tmp->next;
-		//if (tmp->next == NULL)
-		//	break ;
 		if (min_val > tmp->data)
 			min_val = tmp->data;
 	}
@@ -77,3 +77,24 @@ int	lst_find_pos(t_opp *op, int val)
 	}
 	return (pos);
 }
+
+void	set_top_b(t_node **stack, int pos, int mid_val)
+{
+	if (pos < mid_val)
+	{
+		while (pos > 0 && (*stack) != NULL)
+		{
+			ft_rot(stack);
+			pos--;
+		}
+	}
+	else if (pos > mid_val)
+	{
+		while (pos < 99 && (*stack) != NULL)
+		{
+			ft_revrot(stack);
+			pos++;
+		}
+	}
+}
+

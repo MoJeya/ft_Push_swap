@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:19:27 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/07 20:11:57 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/10 16:38:31 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,36 +65,78 @@ void	swap_three(t_opp *op)
 		ft_revrot(&op->stack_a);
 }
 
+/**
+ * TODO: erveything between row 92 and … should be packed in a function
+ *
+*/
+int	search_min(int start_val, int end_val, t_opp *op)
+{
+	int	num;
+	int	count;
+	int	pos;
+
+	count = 0;
+	while (count < 20)
+	{
+		num = start_val;
+		pos = ft_findmin_val(op, num);
+		//ft_printf("FIRST VALUE STACK: 0[%d]\nNUMBER TO FIND: %d\nFOUND AT: %d\nVALUE AT FOUND INDEX: %d\n", op->stack_a->data, num, pos, get_data_on_pos(op, pos));
+		while (num < end_val)
+		{
+			if (get_data_on_pos(op, pos) > end_val)
+			{
+				//ft_printf("Number to big!\n");
+				num++;
+				pos = comp_data(op, pos, ft_findmin_val(op, num));
+			}
+			num++;
+			pos = comp_data(op, pos, ft_findmin_val(op, num));
+		}
+		if (pos < list_lenght(op, 1) / 2)
+		{
+			//ft_printf("VALUE TO SET: %d\n",pos);
+			while (pos > 0)
+			{
+				ft_rot(&op->stack_a);
+				pos--;
+			}
+			ft_pb(op);
+		}
+		else if (pos > list_lenght(op, 1) / 2)
+		{
+			while (pos < list_lenght(op, 1))
+			{
+				ft_revrot(&op->stack_a);
+				pos++;
+			}
+			ft_pb(op);
+		}
+		count++;
+		//ft_printf("count: %d\n", count);
+		//ft_print_list(op);
+	}
+	return (0);
+}
+
 void	swap_x(t_opp *op)
 {
-	int			h_first;
-	int			h_second;
-	int			tresh_hold;
-	int			cnt;
+	int		main_loop;
+	int		cnt;
+	int		end_loop;
 
-	h_first = 0;
-	//h_second = 0;
+	main_loop = 20;
+	cnt = 0;
+	end_loop = 0;
 	while (list_lenght(op, 1) > 0)
 	{
-		tresh_hold = 20;
-		cnt = 0;
-		//h_first = ft_findmin_val(op, cnt);
-		h_second = ft_findrmin_val(op->stack_a, cnt);
-		while (tresh_hold <= 100)
+		ft_printf("list lenght: %d\n", list_lenght(op,1));
+		if (search_min(cnt, main_loop, op) == 0)
 		{
-			if (cnt < tresh_hold)
-			{
-				//h_second = ft_findrmin_val(op->stack_a, cnt);
-				cnt++;
-				//h_first = comp_data(op, h_first, ft_findmin_val(op, cnt));
-				h_second = comp_data(op, h_second, ft_findrmin_val(op->stack_a, cnt));
-			}
-			//ft_printf("hold first: %d\n", h_second);
-			//ft_printf("min value is %d\n", get_data_on_pos(op, h_second));
-			//ft_printf("hold second: %d\n", h_second);
-			tresh_hold += 20;
+			cnt = main_loop;
+			main_loop += 20;
 		}
-		break ;
+		if (main_loop == 120)
+			break ;
 	}
 	//ft_print_list(op);
 }

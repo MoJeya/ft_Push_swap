@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:19:27 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/10 16:38:31 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/11 19:52:58 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,72 +65,76 @@ void	swap_three(t_opp *op)
 		ft_revrot(&op->stack_a);
 }
 
-/**
- * TODO: erveything between row 92 and … should be packed in a function
- *
+/*
+ * TODO: make the swap_100 function more flexible so it can sort more or less than 100 values
+ ////fix loop
+ *	////problem ist dass es am kurz vorm ende nicht richtig sortiert weil
+ *	////die liste selbst nicht größer als 20 ist und deshalb der rest der Liste
+ *	////mit Trash memory gefült wird, dass führt dazu das die zahlen mit mül verglichen werden
+ *	////und deswegen die Opperationen nicht mehr stimmen.
 */
-int	search_min(int start_val, int end_val, t_opp *op)
+
+int	search_min(int start_val, int end_val, t_opp *op, int *opp_total)
 {
 	int	num;
 	int	count;
 	int	pos;
 
 	count = 0;
-	while (count < 20)
+	while (count < 20 && list_lenght(op,1) != 0)
 	{
 		num = start_val;
 		pos = ft_findmin_val(op, num);
-		//ft_printf("FIRST VALUE STACK: 0[%d]\nNUMBER TO FIND: %d\nFOUND AT: %d\nVALUE AT FOUND INDEX: %d\n", op->stack_a->data, num, pos, get_data_on_pos(op, pos));
 		while (num < end_val)
 		{
 			if (get_data_on_pos(op, pos) > end_val)
 			{
-				//ft_printf("Number to big!\n");
 				num++;
 				pos = comp_data(op, pos, ft_findmin_val(op, num));
 			}
 			num++;
 			pos = comp_data(op, pos, ft_findmin_val(op, num));
 		}
-		if (pos < list_lenght(op, 1) / 2)
+		if (pos < list_lenght(op, 1) / 2 || pos == 0)
 		{
-			//ft_printf("VALUE TO SET: %d\n",pos);
 			while (pos > 0)
 			{
 				ft_rot(&op->stack_a);
+				(*opp_total)++;
 				pos--;
 			}
+			(*opp_total)++;
 			ft_pb(op);
 		}
-		else if (pos > list_lenght(op, 1) / 2)
+		else if (pos >= list_lenght(op, 1) / 2)
 		{
 			while (pos < list_lenght(op, 1))
 			{
 				ft_revrot(&op->stack_a);
+				(*opp_total)++;
 				pos++;
 			}
 			ft_pb(op);
+			(*opp_total)++;
 		}
 		count++;
-		//ft_printf("count: %d\n", count);
-		//ft_print_list(op);
 	}
+	ft_printf("The opperations TOTAL at the Moment ist %d\n", (*opp_total));
 	return (0);
 }
 
-void	swap_x(t_opp *op)
+void	swap_100(t_opp *op)
 {
 	int		main_loop;
 	int		cnt;
-	int		end_loop;
+	int		opp_total;
 
 	main_loop = 20;
 	cnt = 0;
-	end_loop = 0;
+	opp_total = 0;
 	while (list_lenght(op, 1) > 0)
 	{
-		ft_printf("list lenght: %d\n", list_lenght(op,1));
-		if (search_min(cnt, main_loop, op) == 0)
+		if (search_min(cnt, main_loop, op, &opp_total) == 0)
 		{
 			cnt = main_loop;
 			main_loop += 20;
@@ -138,7 +142,17 @@ void	swap_x(t_opp *op)
 		if (main_loop == 120)
 			break ;
 	}
-	//ft_print_list(op);
+	if (list_lenght(op, 2) != 0)
+	{
+		cnt = list_lenght(op,2);
+		while (cnt > 0)
+		{
+			ft_pa(op);
+			opp_total++;
+			cnt--;
+		}
+	}
+	ft_printf("The TOTAL opperations cost are: %d\n", opp_total);
 }
 
 void	check_which_op(t_opp *op)
@@ -151,7 +165,6 @@ void	check_which_op(t_opp *op)
 	else if (ce == 5)
 		swap_five(op);
 	else
-		swap_x(op);
-	//ft_printf("length of list: %d\n", ce);
-	ft_printf("\n");
+		swap_100(op);
+	ft_print_list(op);
 }

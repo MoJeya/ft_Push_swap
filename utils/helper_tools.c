@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:24:37 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/06 19:05:31 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/14 19:39:26 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	max_n(t_opp *op)
 	t_node	*tmp;
 	int		max_val;
 
-	tmp = op->stack_a;
+	tmp = op->stack_b;
 	max_val = tmp->data;
 	while (tmp->next != NULL)
 	{
@@ -68,8 +68,8 @@ int	lst_find_pos(t_opp *op, int val)
 	t_node	*tmp;
 	int		pos;
 
-	tmp = op->stack_a;
-	pos = 0;
+	tmp = op->stack_b;
+	pos = 1;
 	while (tmp != NULL && (tmp->data != val))
 	{
 		pos++;

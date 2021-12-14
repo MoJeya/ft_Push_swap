@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:55:51 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/14 13:20:19 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/14 19:24:51 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int		ft_findmin_val(t_opp *op, int val);
 int		get_data_on_pos(t_opp *op, int pos);
 void	comp_data(t_opp *op);
 void	set_top_b(t_node **stack, int pos, int mid_val);
+void	rotate_to_val(int pos, t_opp *opp, int stack_option);
 void	ft_serach_through(int val, t_opp *op);
+int		lst_find_pos(t_opp *op, int val);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 18:02:23 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/14 13:32:49 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/14 19:30:07 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,31 @@ int	get_data_on_pos(t_opp *op, int pos)
 	return (data);
 }
 
-void	rotate_to_val(int pos, t_opp *opp)
+void	rotate_to_val(int pos, t_opp *opp, int stack_option)
 {
 	int	cnt;
 
 	cnt = 0;
-	if (pos < (list_lenght(opp, 1) / 2))
+	if (pos < (list_lenght(opp, stack_option) / 2))
 	{
 		while (cnt < pos)
 		{
-			ft_rot(&opp->stack_a);
+			if (stack_option == 1)
+				ft_rot(&opp->stack_a);
+			else if (stack_option == 2)
+				ft_rot(&opp->stack_b);
 			cnt++;
 		}
 	}
 	else
 	{
 		cnt = pos;
-		while (cnt <= list_lenght(opp, 1))
+		while (cnt <= list_lenght(opp, stack_option))
 		{
-			ft_revrot(&opp->stack_a);
+			if (stack_option == 1)
+				ft_revrot(&opp->stack_a);
+			else if (stack_option == 2)
+				ft_revrot(&opp->stack_b);
 			cnt++;
 		}
 	}
@@ -91,7 +97,6 @@ void	comp_data(t_opp *op)
 		}
 		else if (op->stack_a->data < op->stack_b->data)
 		{
-			//ft_printf("stack a: %d < stack b: %d\n", op->stack_a->data, op->stack_b->data);
 			ft_pb(op);
 		}
 	}
@@ -108,7 +113,7 @@ void	ft_serach_through(int val, t_opp *op)
 		&& ft_findmin_val(op, i) != 100)
 	{
 		pos = ft_findmin_val(op, i);
-		rotate_to_val(pos, op);
+		rotate_to_val(pos, op, 1);
 		comp_data(op);
 	}
 }

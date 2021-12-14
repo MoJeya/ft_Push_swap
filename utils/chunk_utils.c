@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 18:02:23 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/10 15:39:17 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/14 13:32:49 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	ft_findmin_val(t_opp *op, int val)
 		tmp = tmp->next;
 		i++;
 	}
+	if (i == list_lenght(op, 1))
+		return (100);
 	return (i);
 }
 
@@ -51,36 +53,62 @@ int	get_data_on_pos(t_opp *op, int pos)
 	return (data);
 }
 
-/**
- * 1. nimm die zahl und vergleiche sie mit der n-1
-*/
-int	comp_data(t_opp *op, int minval_pos1, int minval_pos2)
+void	rotate_to_val(int pos, t_opp *opp)
 {
-	int	val_1;
-	int	val_2;
-	//ft_printf("minval_pos1: %d\n", minval_pos1);
-	//ft_printf("minval_pos2: %d\n", minval_pos2);
-	if (minval_pos1 < 0)
+	int	cnt;
+
+	cnt = 0;
+	if (pos < (list_lenght(opp, 1) / 2))
 	{
-		val_2 = get_data_on_pos(op, minval_pos2);
-		val_1 = get_data_on_pos(op, 0);
-		//ft_printf("X_val_1 = %d\n", val_1);
-	}
-	else if (minval_pos2 < 0)
-	{
-		val_1 = get_data_on_pos(op, minval_pos1);
-		val_2 = get_data_on_pos(op, 0);
-		//ft_printf("X_val_2 = %d\n", val_2);
+		while (cnt < pos)
+		{
+			ft_rot(&opp->stack_a);
+			cnt++;
+		}
 	}
 	else
 	{
-		val_1 = get_data_on_pos(op, minval_pos1);
-		val_2 = get_data_on_pos(op, minval_pos2);
-		//ft_printf("A:value 1: %d\n", val_1);
-		//ft_printf("A:value 2: %d\n", val_2);
+		cnt = pos;
+		while (cnt <= list_lenght(opp, 1))
+		{
+			ft_revrot(&opp->stack_a);
+			cnt++;
+		}
 	}
-	if (val_1 < val_2)
-		return (minval_pos1);
-	else
-		return (minval_pos2);
+}
+
+void	comp_data(t_opp *op)
+{
+	if (op->stack_a != NULL)
+	{
+		if (list_lenght(op, 2) == 0)
+			ft_pb(op);
+		else if (op->stack_a->data > op->stack_b->data)
+		{
+			//ft_printf("stack a: %d > stack b: %d\n", op->stack_a->data, op->stack_b->data);
+			ft_pb(op);
+			ft_rot(&op->stack_b);
+		}
+		else if (op->stack_a->data < op->stack_b->data)
+		{
+			//ft_printf("stack a: %d < stack b: %d\n", op->stack_a->data, op->stack_b->data);
+			ft_pb(op);
+		}
+	}
+}
+
+void	ft_serach_through(int val, t_opp *op)
+{
+	int	i;
+	int	pos;
+
+	i = val;
+	pos = 0;
+	if (ft_findmin_val(op, i) < list_lenght(op, 1)
+		&& ft_findmin_val(op, i) != 100)
+	{
+		pos = ft_findmin_val(op, i);
+		rotate_to_val(pos, op);
+		comp_data(op);
+	}
 }

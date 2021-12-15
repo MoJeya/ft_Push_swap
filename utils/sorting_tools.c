@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:19:27 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/15 13:58:50 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/15 19:42:08 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,21 @@ void	swap_three(t_opp *op)
 		ft_revrot(&op->stack_a);
 }
 
-void	swap_100(t_opp *op)
+void	swap_100(int chunk[][])
 {
-	int	list_len;
-	int	hold_1;
-	int	hold_2;
 
-	list_len = list_lenght(op, 1);
-	
 }
 
 void	check_which_op(t_opp *op)
 {
 	int	ce;
-	//int	max;
-	//int	pos;
-	//int total;
+	int	chunk[5][20];
+	int	i;
+	int	j;
+
+
+	i = 0;
+	j = 0;
 
 	//total = 0;
 	ce = list_lenght(op, 1);
@@ -91,7 +90,7 @@ void	check_which_op(t_opp *op)
 		swap_five(op);
 	else if (ce == 100)
 	{
-		swap_100();
+		swap_100(chunk);
 	}
 	ft_print_list(op);
 }

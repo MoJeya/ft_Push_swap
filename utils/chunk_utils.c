@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 18:02:23 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/14 19:30:07 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/15 13:38:45 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	get_data_on_pos(t_opp *op, int pos)
 	return (data);
 }
 
-void	rotate_to_val(int pos, t_opp *opp, int stack_option)
+void	rotate_to_val(int pos, t_opp *opp, int stack_option, int *total)
 {
 	int	cnt;
 
@@ -67,6 +67,7 @@ void	rotate_to_val(int pos, t_opp *opp, int stack_option)
 			else if (stack_option == 2)
 				ft_rot(&opp->stack_b);
 			cnt++;
+			(*total)++;
 		}
 	}
 	else
@@ -79,30 +80,32 @@ void	rotate_to_val(int pos, t_opp *opp, int stack_option)
 			else if (stack_option == 2)
 				ft_revrot(&opp->stack_b);
 			cnt++;
+			(*total)++;
 		}
 	}
 }
 
-void	comp_data(t_opp *op)
+void	comp_data(t_opp *op, int *total)
 {
 	if (op->stack_a != NULL)
 	{
 		if (list_lenght(op, 2) == 0)
-			ft_pb(op);
+			pb(op);
 		else if (op->stack_a->data > op->stack_b->data)
 		{
 			//ft_printf("stack a: %d > stack b: %d\n", op->stack_a->data, op->stack_b->data);
-			ft_pb(op);
+			pb(op);
 			ft_rot(&op->stack_b);
 		}
 		else if (op->stack_a->data < op->stack_b->data)
 		{
-			ft_pb(op);
+			pb(op);
 		}
 	}
+	(*total)++;
 }
 
-void	ft_serach_through(int val, t_opp *op)
+void	ft_serach_through(int val, t_opp *op, int *total)
 {
 	int	i;
 	int	pos;
@@ -113,7 +116,7 @@ void	ft_serach_through(int val, t_opp *op)
 		&& ft_findmin_val(op, i) != 100)
 	{
 		pos = ft_findmin_val(op, i);
-		rotate_to_val(pos, op, 1);
-		comp_data(op);
+		rotate_to_val(pos, op, 1, total);
+		comp_data(op, total);
 	}
 }

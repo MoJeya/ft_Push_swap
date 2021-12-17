@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:24:37 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/14 19:39:26 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/17 13:59:05 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,16 @@ int	lst_find_pos(t_opp *op, int val)
 	int		pos;
 
 	tmp = op->stack_b;
-	pos = 1;
+	pos = 0;
 	while (tmp != NULL && (tmp->data != val))
 	{
 		pos++;
 		tmp = tmp->next;
+	}
+	if (tmp == NULL)
+	{
+		//ft_printf("Nothing found\n pos: %d\n", pos);
+		return (-1);
 	}
 	return (pos);
 }
@@ -97,4 +102,3 @@ void	set_top_b(t_node **stack, int pos, int mid_val)
 		}
 	}
 }
-

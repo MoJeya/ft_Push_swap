@@ -6,31 +6,54 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 18:02:23 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/15 13:38:45 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/17 14:01:01 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	ft_findmin_val(t_opp *op, int val)
-{
-	t_node	*tmp;
-	int		lst_len;
-	int		i;
+//int	ft_findmin_val(t_opp *op, int val)
+//{
+//	t_node	*tmp;
+//	int		lst_len;
+//	int		i;
 
-	tmp = op->stack_a;
+//	tmp = op->stack_a;
+//	i = 0;
+//	lst_len = list_lenght(op, 1);
+//	while (tmp->next != NULL)
+//	{
+//		if (tmp->data == val)
+//			return (i);
+//		tmp = tmp->next;
+//		i++;
+//	}
+//	if (i == list_lenght(op, 1))
+//		return (100);
+//	return (i);
+//}
+void rrotate_til(int val, t_opp *op)
+{
+	int	i;
+
 	i = 0;
-	lst_len = list_lenght(op, 1);
-	while (tmp->next != NULL)
+	while (i < val)
 	{
-		if (tmp->data == val)
-			return (i);
-		tmp = tmp->next;
+		ft_revrot(&op->stack_a);
 		i++;
 	}
-	if (i == list_lenght(op, 1))
-		return (100);
-	return (i);
+}
+
+void	rotate_til(int val, t_opp *op)
+{
+	int	i;
+
+	i = 0;
+	while (i < val)
+	{
+		ft_rot(&op->stack_a);
+		i++;
+	}
 }
 
 int	get_data_on_pos(t_opp *op, int pos)
@@ -53,70 +76,104 @@ int	get_data_on_pos(t_opp *op, int pos)
 	return (data);
 }
 
-void	rotate_to_val(int pos, t_opp *opp, int stack_option, int *total)
+void	cal_and_rotate(int h_1, int h_2, t_opp *op)
 {
-	int	cnt;
-
-	cnt = 0;
-	if (pos < (list_lenght(opp, stack_option) / 2))
+	if (h_1 < (list_lenght(op, 1) / 2) && h_2 < (list_lenght(op, 1) / 2))
 	{
-		while (cnt < pos)
-		{
-			if (stack_option == 1)
-				ft_rot(&opp->stack_a);
-			else if (stack_option == 2)
-				ft_rot(&opp->stack_b);
-			cnt++;
-			(*total)++;
-		}
+		if (h_1 < h_2)
+			rotate_til(h_1, op);
+		else if (h_1 > h_2)
+			rotate_til (h_2, op);
 	}
-	else
+	else if (h_1 > (list_lenght(op, 1) / 2) && h_2 > (list_lenght(op, 1) / 2))
 	{
-		cnt = pos;
-		while (cnt <= list_lenght(opp, stack_option))
-		{
-			if (stack_option == 1)
-				ft_revrot(&opp->stack_a);
-			else if (stack_option == 2)
-				ft_revrot(&opp->stack_b);
-			cnt++;
-			(*total)++;
-		}
+		h_1 = list_lenght(op, 1) - h_1;
+		h_2 = list_lenght(op, 1) - h_2;
+		if (h_1 < h_2)
+			rrotate_til(h_1, op);
+		else if (h_1 > h_2)
+			rrotate_til(h_2, op);
+	}
+	else if (h_1 < (list_lenght(op, 1) / 2) && h_2 > (list_lenght(op, 1) / 2))
+	{
+		h_2 = list_lenght(op, 1) - h_2;
+		if (h_1 < h_2)
+			rotate_til(h_1, op);
+		else if (h_1 > h_2)
+			rrotate_til(h_2, op);
+	}
+	pb(op);
+}
+
+void	pick_set(int *chunk_x, int *end)
+{
+	if ((*chunk_x) == 0)
+		(*end) = 19;
+	else if ((*chunk_x) == 1)
+	{
+		(*chunk_x) = 20;
+		(*end) = 39;
+	}
+	else if ((*chunk_x) == 2)
+	{
+		(*chunk_x) = 40;
+		(*end) = 59;
+	}
+	else if ((*chunk_x) == 3)
+	{
+		(*chunk_x) = 60;
+		(*end) = 79;
+	}
+	else if ((*chunk_x) == 4)
+	{
+		(*chunk_x) = 80;
+		(*end) = 99;
 	}
 }
 
-void	comp_data(t_opp *op, int *total)
+int	find_num(int chunck_x, int count, t_opp *op)
 {
-	if (op->stack_a != NULL)
-	{
-		if (list_lenght(op, 2) == 0)
-			pb(op);
-		else if (op->stack_a->data > op->stack_b->data)
-		{
-			//ft_printf("stack a: %d > stack b: %d\n", op->stack_a->data, op->stack_b->data);
-			pb(op);
-			ft_rot(&op->stack_b);
-		}
-		else if (op->stack_a->data < op->stack_b->data)
-		{
-			pb(op);
-		}
-	}
-	(*total)++;
-}
+	int		i;
+	int		end;
+	int		h_1;
+	int		h_2;
 
-void	ft_serach_through(int val, t_opp *op, int *total)
-{
-	int	i;
-	int	pos;
-
-	i = val;
-	pos = 0;
-	if (ft_findmin_val(op, i) < list_lenght(op, 1)
-		&& ft_findmin_val(op, i) != 100)
+	end = 0;
+	pick_set(&chunck_x, &end);
+	i = chunck_x;
+	h_1 = -1;
+	h_2 = -1;
+	while (i < end)
 	{
-		pos = ft_findmin_val(op, i);
-		rotate_to_val(pos, op, 1, total);
-		comp_data(op, total);
+		count = i;
+		while (count < end)
+		{
+			h_1 = lst_find_pos(op, count);
+			ft_printf("h_1: %d\nh_2: %d\ncount: %d\n", h_1, h_2, count); // der fehler liegt in der lst_find_pos
+			while (h_1 >= 0 && count < end)
+			{
+				h_2 = lst_find_pos(op, count);
+				count++;
+				if (h_2 >= 0)
+					break ;
+			}
+			if (h_1 >= 0 && h_2 >= 0)
+				break ;
+			count++;
+		}
+		if (list_lenght(op, 1) == 1)
+			return (0);
+		if (h_1 >= 0 && h_2 >= 0)
+		{
+			ft_printf("h_1 = %d\nh_2 = %d\n", h_1, h_2);
+			cal_and_rotate(h_1, h_2, op);
+			h_1 = -1;
+			h_2 = -1;
+			i = chunck_x;
+		}
+		else if (h_1 < 0 && h_2 < 0)
+			return (0);
+		i++;
 	}
+	return (0);
 }

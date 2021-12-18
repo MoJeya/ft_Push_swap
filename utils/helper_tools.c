@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:24:37 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/17 13:59:05 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/18 20:47:15 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,38 +67,45 @@ int	lst_find_pos(t_opp *op, int val)
 {
 	t_node	*tmp;
 	int		pos;
+	int		first_num;
 
-	tmp = op->stack_b;
+	tmp = op->stack_a;
 	pos = 0;
+	first_num = tmp->data;
 	while (tmp != NULL && (tmp->data != val))
 	{
 		pos++;
 		tmp = tmp->next;
 	}
-	if (tmp == NULL)
+	if (tmp != NULL && first_num != val && val != tmp->data)
 	{
-		//ft_printf("Nothing found\n pos: %d\n", pos);
+		ft_printf("Nothing found\n pos: %d\n", pos);
 		return (-1);
 	}
 	return (pos);
 }
 
-void	set_top_b(t_node **stack, int pos, int mid_val)
+int	is_num_lst(t_opp *op, int num)//!mistake
 {
-	if (pos < mid_val)
+	int		flag;
+	t_node	*tmp;
+
+	tmp = op->stack_a;
+	flag = 0;
+	while (tmp != NULL)
 	{
-		while (pos > 0 && (*stack) != NULL)
+		if (tmp->data == num)
 		{
-			ft_rot(stack);
-			pos--;
+			flag = 0;
+			break ;
 		}
+		else
+			flag = 1;
+		tmp = tmp->next;
 	}
-	else if (pos > mid_val)
-	{
-		while (pos < 99 && (*stack) != NULL)
-		{
-			ft_revrot(stack);
-			pos++;
-		}
-	}
+	if (flag == 0)
+		ft_printf("Number: %d true\n");
+	else if (flag == 1)
+		ft_printf("Number %d false\n");
+	return (flag);
 }

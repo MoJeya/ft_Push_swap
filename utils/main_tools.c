@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:35:03 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/10 16:37:04 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/18 18:17:49 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,30 @@ int	get_char(char *str)
 	while (ft_isdigit(str[i]) == 1)
 		i++;
 	return (i);
+}
+
+void	pick_set(int *chunk_x, int *end)
+{
+	if ((*chunk_x) == 0)
+		(*end) = 19;
+	else if ((*chunk_x) == 1)
+	{
+		(*chunk_x) = 20;
+		(*end) = 39;
+	}
+	else if ((*chunk_x) == 2)
+	{
+		(*chunk_x) = 40;
+		(*end) = 59;
+	}
+	else if ((*chunk_x) == 3)
+	{
+		(*chunk_x) = 60;
+		(*end) = 79;
+	}
+	else if ((*chunk_x) == 4)
+	{
+		(*chunk_x) = 80;
+		(*end) = 99;
+	}
 }

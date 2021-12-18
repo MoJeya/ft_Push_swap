@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:19:27 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/17 13:43:51 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/18 20:58:34 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,14 @@ void	swap_100(t_opp *op)
 {
 	int	num;
 	int	end;
-	int count;
 
 	num = 0;
 	end = list_lenght(op, 1) / 20;
-	count = 0;
 	while (num < end)
 	{
-		if (find_num(num, count, op) == 0)
+		ft_printf("=====================chunk %d\n", num);
+		if (find_num(num, op) == 0)
 		{
-			break ;
 			num++;
 		}
 	}
@@ -98,5 +96,5 @@ void	check_which_op(t_opp *op)
 	{
 		swap_100(op);
 	}
-	ft_print_list(op);
+	//ft_print_list(op);
 }

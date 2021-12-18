@@ -153,7 +153,7 @@ CODE Snippet: calc_and_rotate(int h_1, int h_2, int lstlen, t_opp *op) Vergleich
 	```
 CODE Snippet: find_num(int chuck_x, int count, t_node *stack) -> geht durch denn ganzen stack
 	2.
-	```
+```
 	int i;
 	int	end;
 	int hdl_1;
@@ -198,7 +198,7 @@ CODE Snippet: find_num(int chuck_x, int count, t_node *stack) -> geht durch denn
 	}
 	return (0);
 
-	```
+```
 
 
 
@@ -206,7 +206,7 @@ CODE Snippet: swap100
 diese function läuft 5 mal, bei jedem durchlauf
 wird ein chunk solange durchlaufen bis keine zahl mehr im chunck x gefunden wird
 	1.
-	```
+```
 	int num;
 	int	end;
 	int count;
@@ -220,4 +220,49 @@ wird ein chunk solange durchlaufen bis keine zahl mehr im chunck x gefunden wird
 				num++;
 		}
 
-	```
+===========================================================
+Stand Now
+Function: find_num()
+This function runs 20 X 20, for every chunck it runs 20 times O(n^2);
+```
+int	find_num(int chunck_x, t_opp *op)
+{
+	int		i;
+	int		end;
+	int		h_1;
+	int		h_2;
+	int		cnt;
+
+	end = 0;
+	pick_set(&chunck_x, &end);
+	i = chunck_x;
+	h_1 = -1;
+	h_2 = -1;
+	cnt = chunck_x;
+	while (i < end)
+	{
+		if (chunck_x == 0)
+			cnt = chunck_x + i;
+		else
+			cnt = chunck_x + (i % chunck_x);
+		while (cnt < end + 1)
+		{
+			if (is_num_lst(op, num) == 0)
+			//do somthing
+			cnt++; --> here should be the h_1 and h_2 Logic
+		}
+		i++;
+	}
+	return (0);
+}
+```
+25 15 49 88 61 69 18 27 64 92 62 57 36 76 74 2 60 80 96 30 26 38 51 21 44 82 7 37 75 91 48 45 43 6 50 47 3 100 28 73 9 39 53 41 19 52 13 29 81 68 32 56 90 67 17 95 85 72 8 40 87 94 89 84 16 77 5 46 12 79 59 34 14 97 99 11 22 71 63 55 33 24 54 65 1 83 93 98 31 23 20 70 10 86 78 58 66 35 4 3
+
+Pushed Value: 55
+value: 50 is on 63
+Number 50 false
+i: 51
+cnt: 51
+Number 51 false
+Number 52 false
+* BUG The is_num_lst function sometimes gives wrong output like example above, 50 is acctually on position 63 but the function says that it is not in the list.

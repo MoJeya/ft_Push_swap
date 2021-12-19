@@ -266,3 +266,7 @@ cnt: 51
 Number 51 false
 Number 52 false
 * BUG The is_num_lst function sometimes gives wrong output like example above, 50 is acctually on position 63 but the function says that it is not in the list.
+
+
+max_n:
+	das programm läuft solange bis 

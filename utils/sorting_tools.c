@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:19:27 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/18 20:58:34 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/20 00:40:15 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	swap_five(t_opp *op)
 {
 	int		pos_min;
 
-	pos_min = lst_find_pos(op, min_n(op));
+	pos_min = lst_find_pos(op, min_n(op), 1);
 	if (pos_min == 4)
 		ft_revrot(&op->stack_a);
 	else
@@ -28,7 +28,7 @@ void	swap_five(t_opp *op)
 		}
 	}
 	pb(op);
-	pos_min = lst_find_pos(op, min_n(op));
+	pos_min = lst_find_pos(op, min_n(op), 1);
 	while (pos_min > 0)
 	{
 		ft_rot(&op->stack_a);
@@ -46,8 +46,8 @@ void	swap_three(t_opp *op)
 	int	pos_min;
 
 	ft_printf("2\n");
-	pos_max = lst_find_pos(op, max_n(op));
-	pos_min = lst_find_pos(op, min_n(op));
+	pos_max = lst_find_pos(op, max_n(op, 1), 1);
+	pos_min = lst_find_pos(op, min_n(op), 1);
 	if (pos_min == 1 && pos_max == 2)
 		sa(op);
 	else if (pos_min == 2 && pos_max == 0)
@@ -66,21 +66,65 @@ void	swap_three(t_opp *op)
 		ft_revrot(&op->stack_a);
 }
 
+int	push_back_a(t_opp *op)
+{
+	int	h1;
+	int	cnt;
+	int	opps_cost;
+
+	h1 = 0;
+	cnt = 0;
+	opps_cost = 0;
+	while (list_lenght(op, 2) > 0)
+	{
+		cnt = 0;
+		h1 = lst_find_pos(op, max_n(op, 2), 2);
+		if (h1 > list_lenght(op, 2) / 2)
+		{
+			data_on_pos(op, h1, 2);
+			h1 = list_lenght(op, 2) - h1;
+			while (cnt < h1)
+			{
+				opps_cost += ft_revrot(&op->stack_b);
+				cnt++;
+			}
+		}
+		else if (h1 <= list_lenght(op, 2) / 2)
+		{
+			ft_printf("position: %d\n",h1);
+			while (cnt < h1)
+			{
+				opps_cost += ft_rot(&op->stack_b);
+				ft_printf("To be Pushed: %d\n", data_on_pos(op, 0, 2));
+				cnt++;
+			}
+		}
+		opps_cost += pa(op);
+		ft_printf("pushed value: %d\n", data_on_pos(op, 0, 1));
+	}
+	return (opps_cost);
+}
+
 void	swap_100(t_opp *op)
 {
 	int	num;
 	int	end;
+	int	addi;
 
 	num = 0;
 	end = list_lenght(op, 1) / 20;
+	addi = 0;
 	while (num < end)
 	{
 		ft_printf("=====================chunk %d\n", num);
-		if (find_num(num, op) == 0)
+		if (find_num(num, op, &addi) == 0)
 		{
 			num++;
 		}
+		ft_printf("num = %d\n", num);
 	}
+	addi += push_back_a(op);
+	ft_printf("Opperation cost = %d\n", addi);
 }
 
 void	check_which_op(t_opp *op)
@@ -96,5 +140,5 @@ void	check_which_op(t_opp *op)
 	{
 		swap_100(op);
 	}
-	//ft_print_list(op);
+	ft_print_list(op);
 }

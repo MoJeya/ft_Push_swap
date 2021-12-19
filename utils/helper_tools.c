@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:24:37 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/18 20:47:15 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/20 00:30:01 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,27 @@ int	list_lenght(t_opp *op, int stack_option)
 	return (len);
 }
 
-int	max_n(t_opp *op)
+int	max_n(t_opp *op, int option)
 {
 	t_node	*tmp;
 	int		max_val;
 
-	tmp = op->stack_b;
+	tmp = NULL;
+	if (option == 2)
+		tmp = op->stack_b;
+	else if (option == 1)
+		tmp = op->stack_a;
 	max_val = tmp->data;
 	while (tmp->next != NULL)
 	{
 		tmp = tmp->next;
 		if (max_val < tmp->data)
+		{
 			max_val = tmp->data;
+			ft_printf("the current max: %d\n", max_val);
+		}
 	}
+	ft_printf("The Biggest value: %d\n", max_val);
 	return (max_val);
 }
 
@@ -63,13 +71,17 @@ int	min_n(t_opp *op)
 	return (min_val);
 }
 
-int	lst_find_pos(t_opp *op, int val)
+int	lst_find_pos(t_opp *op, int val, int option)
 {
 	t_node	*tmp;
 	int		pos;
 	int		first_num;
 
-	tmp = op->stack_a;
+	tmp = NULL;
+	if (option == 1)
+		tmp = op->stack_a;
+	else if (option == 2)
+		tmp = op->stack_b;
 	pos = 0;
 	first_num = tmp->data;
 	while (tmp != NULL && (tmp->data != val))
@@ -103,9 +115,5 @@ int	is_num_lst(t_opp *op, int num)//!mistake
 			flag = 1;
 		tmp = tmp->next;
 	}
-	if (flag == 0)
-		ft_printf("Number: %d true\n");
-	else if (flag == 1)
-		ft_printf("Number %d false\n");
 	return (flag);
 }

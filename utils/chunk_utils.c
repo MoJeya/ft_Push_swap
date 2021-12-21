@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 18:02:23 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/20 00:33:53 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:46:50 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,49 +122,99 @@ int	cal_and_rotate(int h_1, int h_2, t_opp *op)
 	return (count);
 }
 
-int	find_num(int chunck_x, t_opp *op, int *addi)
-{
-	int		i;
-	int		end;
-	int		h_1;
-	int		h_2;
-	int		cnt;
-	int		count;
+//int	find_num(int chunck_x, t_opp *op, int *addi)
+//{
+//	int		i;
+//	int		end;
+//	int		h_1;
+//	int		h_2;
+//	int		cnt;
+//	int		count;
 
-	end = 0;
-	pick_set(&chunck_x, &end);
-	i = chunck_x;
-	h_1 = -1;
-	h_2 = -1;
-	cnt = chunck_x;
-	count = 0;
-	while (i < end && list_lenght(op, 1) > 0)
+//	end = 0;
+//	if (list_lenght(op, 1) == 100)
+//		pick_set(&chunck_x, &end);
+//	else if (list_lenght(op, 1) == 500)
+//		pick_set_500(&chunck_x, &end);
+//	i = chunck_x;
+//	h_1 = -1;
+//	h_2 = -1;
+//	cnt = chunck_x;
+//	count = 0;
+//	while (i < end && list_lenght(op, 1) > 0)
+//	{
+//		if (chunck_x == 0)
+//			cnt = chunck_x + i;
+//		else
+//			cnt = chunck_x + (i % chunck_x);
+//		while (cnt < end + 1)
+//		{
+//			if (is_num_lst(op, cnt) == 0)
+//			{
+//				if (h_1 < 0)
+//					h_1 = lst_find_pos(op, cnt, 1);
+//				else if (h_1 >= 0 && h_2 < 0)
+//				{
+//					h_2 = lst_find_pos(op, cnt, 1);
+//					count += cal_and_rotate(h_1, h_2, op);
+//					h_1 = -1;
+//					h_2 = -1;
+//					break ;
+//				}
+//			}
+//			cnt++;
+//		}
+//		if (is_num_lst(op, i) == 0)
+//			i -= 1;
+//		i++;
+//	}
+//	(*addi) += count;
+//	return (0);
+//}
+
+int	find_num_ver2(int chunck_x, t_opp *op, int *addi)
+{
+	int	end;
+	int	h1;
+	int	h2;
+	int	i;
+	t_node *tmp;
+
+	tmp = op->stack_a;
+	if (list_lenght(op, 1) == 100)
 	{
-		if (chunck_x == 0)
-			cnt = chunck_x + i;
-		else
-			cnt = chunck_x + (i % chunck_x);
-		while (cnt < end + 1)
+		pick_set(&chunck_x, &end, op);
+		ft_printf("start: %d\nend: %d\n", chunck_x, end);
+	}
+	else if (list_lenght(op, 1) == 500)
+		pick_set_500(&chunck_x, &end, op);
+	h1 = -1;
+	h2 = -1;
+	i = 0;
+	while (i < list_lenght(op, 1))
+	{
+		if (tmp && tmp->data < chunck_x && tmp->data >= end)
 		{
-			if (is_num_lst(op, cnt) == 0)
-			{
-				if (h_1 < 0)
-					h_1 = lst_find_pos(op, cnt, 1);
-				else if (h_1 >= 0 && h_2 < 0)
-				{
-					h_2 = lst_find_pos(op, cnt, 1);
-					count += cal_and_rotate(h_1, h_2, op);
-					h_1 = -1;
-					h_2 = -1;
-					break ;
-				}
-			}
-			cnt++;
+			ft_printf("data: %d\n", tmp->data);
+			if (h1 == -1)
+				h1 = lst_find_pos(op, tmp->data, 1);
+			else if (h1 >= 0 && h2 == -1)
+				h2 = lst_find_pos(op, tmp->data, 1);
 		}
-		if (is_num_lst(op, i) == 0)
-			i -= 1;
+		if (h1 != -1 && h2 != -1)
+		{
+			ft_printf("h1: %d\nh2: %d\ndata on h1: %d\ndata 0n h2: %d\n", h1, h2, data_on_pos(op, h1, 1), data_on_pos(op, h2, 1));
+			(*addi) += cal_and_rotate(h1, h2, op);
+			h1 = -1;
+			h2 = -1;
+		}
+		else if (h1 == -1 && h2 == -1 && tmp->next == NULL)
+			return (0);
+		if (tmp->next == NULL)
+			tmp = op->stack_a;
+		else
+			tmp = tmp->next;
 		i++;
 	}
-	(*addi) += count;
 	return (0);
 }

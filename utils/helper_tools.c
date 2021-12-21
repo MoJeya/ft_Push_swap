@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:24:37 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/20 00:30:01 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:03:16 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ int	max_n(t_opp *op, int option)
 		if (max_val < tmp->data)
 		{
 			max_val = tmp->data;
-			ft_printf("the current max: %d\n", max_val);
+			//ft_printf("the current max: %d\n", max_val);
 		}
 	}
-	ft_printf("The Biggest value: %d\n", max_val);
+	//ft_printf("The Biggest value: %d\n", max_val);
 	return (max_val);
 }
 
@@ -97,7 +97,7 @@ int	lst_find_pos(t_opp *op, int val, int option)
 	return (pos);
 }
 
-int	is_num_lst(t_opp *op, int num)//!mistake
+int	is_num_lst(t_opp *op, int num)
 {
 	int		flag;
 	t_node	*tmp;

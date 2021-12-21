@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:55:51 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/19 23:09:57 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/21 13:40:59 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ int		data_on_pos(t_opp *op, int pos, int option);
 int		is_num_lst(t_opp *op, int num);
 //int		lst_find_pos(t_opp *op, int val, int option);
 int		find_num(int chunck_x, t_opp *op, int *addi);
-void	pick_set(int *chunk_x, int *end);
+void	pick_set(int *chunk_x, int *end, t_opp *op);
 int		push_back_a(t_opp *op);
+void	pick_set_500(int *chunk_x, int *end, t_opp *op);
+int		find_num_ver2(int chunck_x, t_opp *op, int *addi);
 
 #endif

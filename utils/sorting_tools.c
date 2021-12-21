@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:19:27 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/20 00:40:15 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:16:35 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,17 +91,18 @@ int	push_back_a(t_opp *op)
 		}
 		else if (h1 <= list_lenght(op, 2) / 2)
 		{
-			ft_printf("position: %d\n",h1);
+			//ft_printf("position: %d\n",h1);
 			while (cnt < h1)
 			{
 				opps_cost += ft_rot(&op->stack_b);
-				ft_printf("To be Pushed: %d\n", data_on_pos(op, 0, 2));
+				//ft_printf("To be Pushed: %d\n", data_on_pos(op, 0, 2));
 				cnt++;
 			}
 		}
 		opps_cost += pa(op);
-		ft_printf("pushed value: %d\n", data_on_pos(op, 0, 1));
+		//ft_printf("pushed value: %d\n", data_on_pos(op, 0, 1));
 	}
+	ft_printf("opperation cost 1: %d\n", opps_cost);
 	return (opps_cost);
 }
 
@@ -112,16 +113,20 @@ void	swap_100(t_opp *op)
 	int	addi;
 
 	num = 0;
-	end = list_lenght(op, 1) / 20;
+	end = 0;
+	if (list_lenght(op, 1) == 100)
+		end = list_lenght(op, 1) / 20;
+	else if (list_lenght(op, 1) == 500)
+		end = list_lenght(op, 1) / 50;
 	addi = 0;
 	while (num < end)
 	{
 		ft_printf("=====================chunk %d\n", num);
-		if (find_num(num, op, &addi) == 0)
+		if (find_num_ver2(num, op, &addi) == 0)
 		{
+			ft_printf("num = %d\n", num);
 			num++;
 		}
-		ft_printf("num = %d\n", num);
 	}
 	addi += push_back_a(op);
 	ft_printf("Opperation cost = %d\n", addi);
@@ -132,13 +137,15 @@ void	check_which_op(t_opp *op)
 	int	ce;
 
 	ce = list_lenght(op, 1);
+	ft_printf("lenght: %d\n", ce);
 	if (ce == 3)
 		swap_three(op);
 	else if (ce == 5)
 		swap_five(op);
-	else if (ce == 100)
+	else if (ce == 100 || ce == 500)
 	{
 		swap_100(op);
 	}
 	ft_print_list(op);
+	ft_printf("list lenght: %d\n", list_lenght(op,1));
 }

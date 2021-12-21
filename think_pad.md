@@ -266,7 +266,97 @@ cnt: 51
 Number 51 false
 Number 52 false
 * BUG The is_num_lst function sometimes gives wrong output like example above, 50 is acctually on position 63 but the function says that it is not in the list.
+instead of runnig thourgh every number i could use
+	if (tmp->data >= chunk_x && tmp->data < end)
+		cal_and_rotate(h_1, h_2, val, op);
+	pb();
+
+sort 100 is done!
+
+Idea:
+	using merge sort for sort 500:
+		*Rules :
+				-	2 functions merge() is used for merging two halves
+								mergesort() recursively calls itself to divide the
+								array till size becomes one
+				-	there are two indexes i = left index r = right index
+								[38][27][43][3][9][82][10]
+
+								```
+								if (i < r)
+									m = i+(r-1)/2 -> the array will be diveded into 2 parts
+								```
+								[38][27][43][3] | [9][82][10]
+								if (i < r)
+									...
+									[ [38][27] | [43][3] ] | [ [9][82] | [10] ]
+								if (i < r)
+									...
+									[ [38] | [27] ] | [ [43] | [3] ]	|	[ [9] | [82] ] | [ [10] ]
+								compare the elements
+									if (i > i+1)
+										swapelements
+									else if (i == list lenght)
+										break ;
+									i+=2
+
+									i			j
+									[27][38] | [3][43] | [9][82] | [10]
+									now compare the numbers agian
+									i = 0;
+									j = i + 2;
+									if (ar[i] < ar[j])
+										putnum(ar[i]);
+									else if ([i] > [j])
+										putnum(ar[j]);
+									i++;
+									j++;
+									https://www.educative.io/edpresso/how-to-sort-a-linked-list-using-merge-sort
+Case 500:
+0. int div = 5;
+1. pust list a into array
+
+```
+	int *arr;
 
 
-max_n:
-	das programm läuft solange bis 
+
+	while (op->stack_a->next != NULL) ->
+	{
+		arr = put_to_arr(op);
+		if (!arr)
+			exit (1);
+		quicksort(ar, 0, list_length-1);
+
+		mid = list_len(*head_a) / div;
+		i = 0;
+		while (i++ < mid)
+			push_smaller(head_a, head_b, arr[mid]);
+		if (div > 2)
+			div--;
+		free(arr);
+
+	}
+	int *put_to_arr(t_opp *op)
+	{
+		int *ar;
+		t_node *tmp;
+		int i;
+
+		tmp = op->stack_a;
+		arr = (int *)malloc(list_lenght(op,1) * sizeof(int));
+		i = 0;
+		if (!ar)
+			return(ar);
+		while (tmp)
+		{
+			ar[i] = tmp->data;
+			tmp = tmp->next;
+			i++;
+		}
+		return (ar);
+	}
+
+
+
+```

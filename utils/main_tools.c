@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:35:03 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/10 16:37:04 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:13:27 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,26 @@ int	get_char(char *str)
 	while (ft_isdigit(str[i]) == 1)
 		i++;
 	return (i);
+}
+
+void	pick_set(int *chunk_x, int *end, t_opp *op)
+{
+	(*chunk_x) = list_lenght(op, 1) - (20 * (*chunk_x));
+	(*end) = (*chunk_x) - 20;
+	ft_printf("start: %d\nend: %d\n", (*chunk_x), (*end));
+}
+
+void	pick_set_500(int *chunk_x, int *end, t_opp *op)
+{
+	if ((*chunk_x) == 0)
+	{
+		(*chunk_x) = list_lenght(op, 1) - (75 * (*chunk_x));
+		(*end) = (*chunk_x) - 75;
+	}
+	else if ((*chunk_x) >= 1)
+	{
+		(*chunk_x) = list_lenght(op, 1) - (75 * (*chunk_x));
+		(*end) = (*chunk_x) - 75;
+	}
+	ft_printf("start: %d\nend: %d\n", (*chunk_x), (*end));
 }

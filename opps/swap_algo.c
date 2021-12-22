@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 15:03:51 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/06 18:59:29 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2021/12/19 20:33:21 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,21 @@ static t_node	*swap_stack(t_node **st_from)
 	return ((*st_from));
 }
 
-void	ft_sa(t_opp *opp)
+int	sa(t_opp *opp)
 {
 	swap_stack(&opp->stack_a);
-	//ft_printf("sa ");
+	return (1);
 }
 
-void	ft_sb(t_opp *opp)
+int	sb(t_opp *opp)
 {
 	swap_stack(&opp->stack_b);
+	return (1);
 }
 
-void	ft_ss(t_opp *opp)
+int	ss(t_opp *opp)
 {
 	swap_stack(&opp->stack_a);
 	swap_stack(&opp->stack_b);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:55:51 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/03 12:32:58 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/03 18:50:00 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct s_opp
 {
 	t_node	*stack_a;
 	t_node	*stack_b;
+	int		h1;
+	int		h2;
 }	t_opp;
 
 void	check_which_op(t_opp *op);

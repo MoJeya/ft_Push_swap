@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:19:27 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/03 17:11:03 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/03 18:49:52 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	swap_three(t_opp *op)
 	int	pos_max;
 	int	pos_min;
 
+	op->h1 = 0;
+	op->h2 = 0;
 	pos_max = lst_find_pos(op, max_n(op, 1), 1);
 	pos_min = lst_find_pos(op, min_n(op), 1);
 	if (pos_min == 1 && pos_max == 2)
@@ -132,6 +134,8 @@ void	check_which_op(t_opp *op)
 {
 	int	ce;
 
+	op->h1 = -1;
+	op->h2 = -1;
 	ce = list_lenght(op, 1);
 	if (ce == 3)
 		swap_three(op);

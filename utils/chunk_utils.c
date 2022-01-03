@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 18:02:23 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/03 17:55:58 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/03 18:52:08 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int	rotate_til(int val, t_opp *op, int option)
 			i++;
 		}
 	}
-	//ft_printf("Pushed Value: %d\n", op->stack_a->data);
-	ft_printf("count roation value: %d\n", count);
 	return (count);
 }
 
@@ -82,56 +80,48 @@ int	cal_and_rotate(int h_1, int h_2, t_opp *op)
 		else if (h_2 < 0)
 			count += rotate_til(h_1, op, 1);
 	}
-	ft_printf("Push to STACK B: %d\n", data_on_pos(op, 0, 1));
 	count += pb(op);
-	//ft_printf("Rotation_operartion TOTAL: %d\n", count);
-	ft_printf("count: %d\n", count);
 	return (count);
+}
+
+static void	set_chunck(int *chunk_x, int *end, int list_len)
+{
+	if (list_len == 100)
+		pick_set(chunk_x, end, list_len);
+	else if (list_len == 500)
+		pick_set_500(chunk_x, end, list_len);
 }
 
 int	find_num_ver2(int chunck_x, t_opp *op, int *addi, int list_len)
 {
 	int		end;
-	int		h1;
-	int		h2;
 	t_node	*tmp;
 
-	ft_printf("begin op cost: %d\n", (*addi));
 	tmp = op->stack_a;
-	if (list_len == 100)
-		pick_set(&chunck_x, &end, list_len);
-	else if (list_len == 500)
-		pick_set_500(&chunck_x, &end, list_len);
-	h1 = -1;
-	h2 = -1;
+	set_chunck(&chunck_x, &end, list_len);
+	op->h1 = -1;
+	op->h2 = -1;
 	while (tmp != NULL)
 	{
 		if (tmp->data <= chunck_x && tmp->data >= end)
 		{
-			if (h1 == -1)
-				h1 = lst_find_pos(op, tmp->data, 1);
-			else if (h1 >= 0 && h2 == -1)
-				h2 = lst_find_pos(op, tmp->data, 1);
+			if (op->h1 == -1)
+				op->h1 = lst_find_pos(op, tmp->data, 1);
+			else if (op->h1 >= 0 && op->h2 == -1)
+				op->h2 = lst_find_pos(op, tmp->data, 1);
 		}
-		if (h1 != -1 && h2 != -1)
+		if (op->h1 != -1 && op->h2 != -1)
 		{
-			ft_printf("Hold 1: %d\nHold 2: %d\n", h1, h2);
-			(*addi) += cal_and_rotate(h1, h2, op);
-			h1 = -1;
-			h2 = -1;
+			(*addi) += cal_and_rotate(op->h1, op->h2, op);
+			op->h1 = -1;
+			op->h2 = -1;
 		}
-		else if (h1 == -1 || h2 == -1)
+		else if (op->h1 == -1 || op->h2 == -1)
 			tmp = tmp->next;
 	}
-	if (h1 >= 0 && h2 == -1)
-	{
-		ft_printf("Hold 1: %d\n", h1);
-		(*addi) += cal_and_rotate(h1, -1, op);
-	}
-	else if (h1 == -1 && h2 >= 0)
-	{
-		(*addi) += cal_and_rotate(h2, -1, op);
-	}
-	ft_printf("find_num opperations cost: %d\n", (*addi));
+	if (op->h1 >= 0 && op->h2 == -1)
+		(*addi) += cal_and_rotate(op->h1, -1, op);
+	else if (op->h2 >= 0 && op->h1 == -1)
+		(*addi) += cal_and_rotate(op->h2, -1, op);
 	return (0);
 }

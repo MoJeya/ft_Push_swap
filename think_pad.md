@@ -360,3 +360,33 @@ Case 500:
 
 
 ```
+Numbers wich are in the Wrong place!
+[13]
+[32]
+[40]
+[79]
+[99]
+[83]
+[93]
+[98]
+[86]
+
+neuer stand
+[13]
+[32]
+[59]
+[65]
+[86]
+
+entweder is 100 übrich geblieben oder meine find Max function funktioniert nicht richtig weil, es nicht bis zum ende geht.
+!!!while(tmp->next != NULL)!!!
+
+Fund:
+
+find_num_ver2: hoert ab der 13 auf und die zahlenlist belibt im stack warscheinlich wegen
+!!!while(tmp->next != NULL)!!!
+
+wie oft läuft mein while loop?
+
+[21]
+[51]

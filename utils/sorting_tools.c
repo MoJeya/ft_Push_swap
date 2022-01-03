@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:19:27 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/21 14:16:35 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/03 17:11:03 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	swap_three(t_opp *op)
 	int	pos_max;
 	int	pos_min;
 
-	ft_printf("2\n");
 	pos_max = lst_find_pos(op, max_n(op, 1), 1);
 	pos_min = lst_find_pos(op, min_n(op), 1);
 	if (pos_min == 1 && pos_max == 2)
@@ -81,7 +80,6 @@ int	push_back_a(t_opp *op)
 		h1 = lst_find_pos(op, max_n(op, 2), 2);
 		if (h1 > list_lenght(op, 2) / 2)
 		{
-			data_on_pos(op, h1, 2);
 			h1 = list_lenght(op, 2) - h1;
 			while (cnt < h1)
 			{
@@ -91,18 +89,15 @@ int	push_back_a(t_opp *op)
 		}
 		else if (h1 <= list_lenght(op, 2) / 2)
 		{
-			//ft_printf("position: %d\n",h1);
 			while (cnt < h1)
 			{
 				opps_cost += ft_rot(&op->stack_b);
-				//ft_printf("To be Pushed: %d\n", data_on_pos(op, 0, 2));
 				cnt++;
 			}
 		}
 		opps_cost += pa(op);
-		//ft_printf("pushed value: %d\n", data_on_pos(op, 0, 1));
 	}
-	ft_printf("opperation cost 1: %d\n", opps_cost);
+	ft_printf("Rotation Cost: %d\n", opps_cost);
 	return (opps_cost);
 }
 
@@ -111,20 +106,21 @@ void	swap_100(t_opp *op)
 	int	num;
 	int	end;
 	int	addi;
+	int	list_len;
 
 	num = 0;
 	end = 0;
-	if (list_lenght(op, 1) == 100)
-		end = list_lenght(op, 1) / 20;
-	else if (list_lenght(op, 1) == 500)
-		end = list_lenght(op, 1) / 50;
+	list_len = list_lenght(op, 1);
+	if (list_len == 100)
+		end = list_len / 20;
+	else if (list_len == 500)
+		end = list_len / 50;
 	addi = 0;
 	while (num < end)
 	{
 		ft_printf("=====================chunk %d\n", num);
-		if (find_num_ver2(num, op, &addi) == 0)
+		if (find_num_ver2(num, op, &addi, list_len) == 0)
 		{
-			ft_printf("num = %d\n", num);
 			num++;
 		}
 	}
@@ -137,7 +133,6 @@ void	check_which_op(t_opp *op)
 	int	ce;
 
 	ce = list_lenght(op, 1);
-	ft_printf("lenght: %d\n", ce);
 	if (ce == 3)
 		swap_three(op);
 	else if (ce == 5)
@@ -147,5 +142,5 @@ void	check_which_op(t_opp *op)
 		swap_100(op);
 	}
 	ft_print_list(op);
-	ft_printf("list lenght: %d\n", list_lenght(op,1));
+	ft_printf("list lenght: %d\n", list_lenght(op, 1));
 }

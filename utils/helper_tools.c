@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:24:37 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/21 14:03:16 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/03 13:59:48 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,7 @@ int	max_n(t_opp *op, int option)
 	{
 		tmp = tmp->next;
 		if (max_val < tmp->data)
-		{
 			max_val = tmp->data;
-			//ft_printf("the current max: %d\n", max_val);
-		}
 	}
 	//ft_printf("The Biggest value: %d\n", max_val);
 	return (max_val);

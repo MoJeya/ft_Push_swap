@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 18:02:23 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/21 14:46:50 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/03 17:55:58 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	rotate_til(int val, t_opp *op, int option)
 		}
 	}
 	//ft_printf("Pushed Value: %d\n", op->stack_a->data);
+	ft_printf("count roation value: %d\n", count);
 	return (count);
 }
 
@@ -70,132 +71,43 @@ int	cal_and_rotate(int h_1, int h_2, t_opp *op)
 	count = 0;
 	if (h_1 < (list_lenght(op, 1) / 2) && h_2 < (list_lenght(op, 1) / 2))
 	{
-		//ft_printf("OPTION 1\n");
 		if (h_1 < h_2 || h_1 == h_2)
-			count += rotate_til(h_1, op, 1);
-		else if (h_1 > h_2)
-			count += rotate_til (h_2, op, 1);
-	}
-	else if (h_1 > (list_lenght(op, 1) / 2) && h_2 > (list_lenght(op, 1) / 2))
-	{
-		//ft_printf("OPTION 2\n");
-		h_1 = list_lenght(op, 1) - h_1;
-		h_2 = list_lenght(op, 1) - h_2;
-		if (h_1 == 0)
-			h_1 = 1;
-		else if (h_2 == 0)
-			h_2 = 1;
-		//ft_printf("ROTATE COST 1: %d\nROTATE COST 2: %d\n", h_1, h_2);
-		if (h_1 < h_2 || h_1 == h_2)
-			count += rotate_til(h_1, op, 2);
-		else if (h_1 > h_2)
-			count += rotate_til(h_2, op, 2);
-	}
-	else if (h_1 < (list_lenght(op, 1) / 2) && h_2 > (list_lenght(op, 1) / 2))
-	{
-		//ft_printf("OPTION 3\n");
-		h_2 = list_lenght(op, 1) - h_2;
-		if (h_1 < h_2)
-			count += rotate_til(h_1, op, 1);
-		else if (h_1 > h_2)
-			count += rotate_til(h_2, op, 2);
-	}
-	else if (h_1 > (list_lenght(op, 1) / 2) && h_2 < (list_lenght(op, 1) / 2))
-	{
-		//ft_printf("OPTION 4\n");
-		h_1 = list_lenght(op, 1) - h_1;
-		if (h_1 == 0)
-			h_1 = 1;
-		//ft_printf("ROTATE COST 1: %d\nROTATE COST 2: %d\n", h_1, h_2);
-		if (h_1 < h_2)
-			count += rotate_til(h_1, op, 2);
-		else if (h_1 > h_2)
-			count += rotate_til(h_2, op, 1);
-		else
 		{
-			//ft_printf("OPTION 5\nROTATE COST 1 & 2: %d & %d\n", h_1, h_2);
-			count += rotate_til(h_1, op, 2);
+			count += rotate_til(h_1, op, 1);
 		}
+		else if (h_1 > h_2 && h_2 != -1)
+		{
+			count += rotate_til(h_2, op, 1);
+		}
+		else if (h_2 < 0)
+			count += rotate_til(h_1, op, 1);
 	}
+	ft_printf("Push to STACK B: %d\n", data_on_pos(op, 0, 1));
 	count += pb(op);
-	//ft_printf("count: %d\n", count);
+	//ft_printf("Rotation_operartion TOTAL: %d\n", count);
+	ft_printf("count: %d\n", count);
 	return (count);
 }
 
-//int	find_num(int chunck_x, t_opp *op, int *addi)
-//{
-//	int		i;
-//	int		end;
-//	int		h_1;
-//	int		h_2;
-//	int		cnt;
-//	int		count;
-
-//	end = 0;
-//	if (list_lenght(op, 1) == 100)
-//		pick_set(&chunck_x, &end);
-//	else if (list_lenght(op, 1) == 500)
-//		pick_set_500(&chunck_x, &end);
-//	i = chunck_x;
-//	h_1 = -1;
-//	h_2 = -1;
-//	cnt = chunck_x;
-//	count = 0;
-//	while (i < end && list_lenght(op, 1) > 0)
-//	{
-//		if (chunck_x == 0)
-//			cnt = chunck_x + i;
-//		else
-//			cnt = chunck_x + (i % chunck_x);
-//		while (cnt < end + 1)
-//		{
-//			if (is_num_lst(op, cnt) == 0)
-//			{
-//				if (h_1 < 0)
-//					h_1 = lst_find_pos(op, cnt, 1);
-//				else if (h_1 >= 0 && h_2 < 0)
-//				{
-//					h_2 = lst_find_pos(op, cnt, 1);
-//					count += cal_and_rotate(h_1, h_2, op);
-//					h_1 = -1;
-//					h_2 = -1;
-//					break ;
-//				}
-//			}
-//			cnt++;
-//		}
-//		if (is_num_lst(op, i) == 0)
-//			i -= 1;
-//		i++;
-//	}
-//	(*addi) += count;
-//	return (0);
-//}
-
-int	find_num_ver2(int chunck_x, t_opp *op, int *addi)
+int	find_num_ver2(int chunck_x, t_opp *op, int *addi, int list_len)
 {
-	int	end;
-	int	h1;
-	int	h2;
-	int	i;
-	t_node *tmp;
+	int		end;
+	int		h1;
+	int		h2;
+	t_node	*tmp;
 
+	ft_printf("begin op cost: %d\n", (*addi));
 	tmp = op->stack_a;
-	if (list_lenght(op, 1) == 100)
-	{
-		pick_set(&chunck_x, &end, op);
-		ft_printf("start: %d\nend: %d\n", chunck_x, end);
-	}
-	else if (list_lenght(op, 1) == 500)
-		pick_set_500(&chunck_x, &end, op);
+	if (list_len == 100)
+		pick_set(&chunck_x, &end, list_len);
+	else if (list_len == 500)
+		pick_set_500(&chunck_x, &end, list_len);
 	h1 = -1;
 	h2 = -1;
-	i = 0;
-	while (i < list_lenght(op, 1))
+	while (tmp != NULL)
 	{
-		if (tmp && tmp->data < chunck_x && tmp->data >= end)
+		if (tmp->data <= chunck_x && tmp->data >= end)
 		{
-			ft_printf("data: %d\n", tmp->data);
 			if (h1 == -1)
 				h1 = lst_find_pos(op, tmp->data, 1);
 			else if (h1 >= 0 && h2 == -1)
@@ -203,18 +115,23 @@ int	find_num_ver2(int chunck_x, t_opp *op, int *addi)
 		}
 		if (h1 != -1 && h2 != -1)
 		{
-			ft_printf("h1: %d\nh2: %d\ndata on h1: %d\ndata 0n h2: %d\n", h1, h2, data_on_pos(op, h1, 1), data_on_pos(op, h2, 1));
+			ft_printf("Hold 1: %d\nHold 2: %d\n", h1, h2);
 			(*addi) += cal_and_rotate(h1, h2, op);
 			h1 = -1;
 			h2 = -1;
 		}
-		else if (h1 == -1 && h2 == -1 && tmp->next == NULL)
-			return (0);
-		if (tmp->next == NULL)
-			tmp = op->stack_a;
-		else
+		else if (h1 == -1 || h2 == -1)
 			tmp = tmp->next;
-		i++;
 	}
+	if (h1 >= 0 && h2 == -1)
+	{
+		ft_printf("Hold 1: %d\n", h1);
+		(*addi) += cal_and_rotate(h1, -1, op);
+	}
+	else if (h1 == -1 && h2 >= 0)
+	{
+		(*addi) += cal_and_rotate(h2, -1, op);
+	}
+	ft_printf("find_num opperations cost: %d\n", (*addi));
 	return (0);
 }

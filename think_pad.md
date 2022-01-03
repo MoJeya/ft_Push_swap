@@ -390,3 +390,8 @@ wie oft läuft mein while loop?
 
 [21]
 [51]
+
+TODO:
+	- find_num shorten
+	- count output richtig machen
+	- tester benutzen

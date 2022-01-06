@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:09:18 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/12/04 17:11:38 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/06 13:50:44 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static void	creat_lst(int argc, char *argv[], t_node **head)
 	j = argc - 1;
 	while (j >= 1)
 	{
-		if (get_char(argv[j]) != 0)
+		if (get_char(argv[j]) == 0)
 		{
-			tmp = create_node(ft_atoi(argv[j]));
+			tmp = create_node(ft_atoi(argv[j]), 0);
 			tmp->next = *head;
 			*head = tmp;
 		}
@@ -57,7 +57,7 @@ t_node	*convert_str_lst(const char *str, t_node	**head)
 	{
 		if (get_char(*tmp) != 0)
 		{
-			lst = create_node(ft_atoi(*tmp));
+			lst = create_node(ft_atoi(*tmp), 0);
 			lst->next = *head;
 			*head = lst;
 		}
@@ -71,6 +71,36 @@ t_node	*convert_str_lst(const char *str, t_node	**head)
 	}
 	revers_lst(head);
 	return ((*head));
+}
+/**
+ * look at the first value in current and compare
+ * it to every value in the list, throug iteration
+ *
+*/
+
+void	set_rank(t_node **stack_a, t_node *current)
+{
+	t_node	*compare_to;
+
+	compare_to = *stack_a;
+	while (compare_to)
+	{
+		if (current->data > compare_to->data)
+			current->rank++;
+		compare_to = compare_to->next;
+	}
+}
+
+void	set_rankloop(t_node *stack_a)
+{
+	t_node	*current;
+
+	current = stack_a;
+	while (current)
+	{
+		set_rank(&stack_a, current);
+		current = current->next;
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -90,8 +120,12 @@ int	main(int argc, char *argv[])
 	}
 	else
 		ft_printf("argument invalid!\n");
-	check_which_op(opps);
-	//ft_print_list(opps);
-	//system("leaks checker");
+	set_rankloop(opps->stack_a);
+	ft_print_list(opps);
+	ft_printf("\n");
+	choose_opperation(opps);
+	ft_printf("\n");
+	ft_print_list(opps);
+	//system("leaks push_swap");
 	return (0);
 }

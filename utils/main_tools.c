@@ -6,18 +6,19 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:35:03 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/03 12:33:18 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/06 13:41:28 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-t_node	*create_node(int num)
+t_node	*create_node(int num, int rank)
 {
 	t_node	*tmp;
 
 	tmp = (t_node *)malloc(sizeof(t_node));
 	tmp->data = num;
+	tmp->rank = rank;
 	tmp->next = NULL;
 	return (tmp);
 }
@@ -53,13 +54,13 @@ void	ft_print_list(t_opp *opp)
 	{
 		if (tmp_a)
 		{
-			ft_printf("[%d]", tmp_a->data);
+			ft_printf("[%d][%d]", tmp_a->data, tmp_a->rank);
 			tmp_a = tmp_a->next;
 		}
 		ft_printf("	");
 		if (tmp_b)
 		{
-			ft_printf("[%d]", tmp_b->data);
+			ft_printf("[%d][%d]", tmp_b->data, tmp_b->rank);
 			tmp_b = tmp_b->next;
 		}
 		ft_printf("\n");
@@ -71,29 +72,14 @@ int	get_char(char *str)
 	int	i;
 
 	i = 0;
-	while (ft_isdigit(str[i]) == 1)
-		i++;
-	return (i);
+	if (ft_atoi(str))
+		return (i);
+	else
+		return (1);
 }
 
-void	pick_set(int *chunk_x, int *end, int list_len)
+void	change_range(int *r_start, int *r_end)
 {
-	(*chunk_x) = list_len - (20 * (*chunk_x));
-	(*end) = (*chunk_x) - 20;
-	//ft_printf("start: %d\nend: %d\n", (*chunk_x), (*end));
-}
-
-void	pick_set_500(int *chunk_x, int *end, int list_len)
-{
-	if ((*chunk_x) == 0)
-	{
-		(*chunk_x) = list_len - (75 * (*chunk_x));
-		(*end) = (*chunk_x) - 75;
-	}
-	else if ((*chunk_x) >= 1)
-	{
-		(*chunk_x) = list_len - (75 * (*chunk_x));
-		(*end) = (*chunk_x) - 75;
-	}
-	//ft_printf("start: %d\nend: %d\n", (*chunk_x), (*end));
+	(*r_start) = (*r_end);
+	(*r_end) += 25;
 }

@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:24:37 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/03 13:59:48 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/06 12:49:51 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ int	max_n(t_opp *op, int option)
 		tmp = op->stack_b;
 	else if (option == 1)
 		tmp = op->stack_a;
-	max_val = tmp->data;
+	max_val = tmp->rank;
 	while (tmp->next != NULL)
 	{
 		tmp = tmp->next;
-		if (max_val < tmp->data)
-			max_val = tmp->data;
+		if (max_val < tmp->rank)
+			max_val = tmp->rank;
 	}
 	//ft_printf("The Biggest value: %d\n", max_val);
 	return (max_val);
@@ -58,12 +58,12 @@ int	min_n(t_opp *op)
 	int		min_val;
 
 	tmp = op->stack_a;
-	min_val = tmp->data;
+	min_val = tmp->rank;
 	while (tmp->next != NULL)
 	{
 		tmp = tmp->next;
-		if (min_val > tmp->data)
-			min_val = tmp->data;
+		if (min_val > tmp->rank)
+			min_val = tmp->rank;
 	}
 	return (min_val);
 }
@@ -80,37 +80,34 @@ int	lst_find_pos(t_opp *op, int val, int option)
 	else if (option == 2)
 		tmp = op->stack_b;
 	pos = 0;
-	first_num = tmp->data;
-	while (tmp != NULL && (tmp->data != val))
+	first_num = tmp->rank;
+	while (tmp != NULL && (tmp->rank != val))
 	{
 		pos++;
 		tmp = tmp->next;
 	}
-	if (tmp != NULL && first_num != val && val != tmp->data)
-	{
-		ft_printf("Nothing found\n pos: %d\n", pos);
+	if (tmp != NULL && first_num != val && val != tmp->rank)
 		return (-1);
-	}
 	return (pos);
 }
 
-int	is_num_lst(t_opp *op, int num)
-{
-	int		flag;
-	t_node	*tmp;
+//int	is_num_lst(t_opp *op, int num)
+//{
+//	int		flag;
+//	t_node	*tmp;
 
-	tmp = op->stack_a;
-	flag = 0;
-	while (tmp != NULL)
-	{
-		if (tmp->data == num)
-		{
-			flag = 0;
-			break ;
-		}
-		else
-			flag = 1;
-		tmp = tmp->next;
-	}
-	return (flag);
-}
+//	tmp = op->stack_a;
+//	flag = 0;
+//	while (tmp != NULL)
+//	{
+//		if (tmp->data == num)
+//		{
+//			flag = 0;
+//			break ;
+//		}
+//		else
+//			flag = 1;
+//		tmp = tmp->next;
+//	}
+//	return (flag);
+//}

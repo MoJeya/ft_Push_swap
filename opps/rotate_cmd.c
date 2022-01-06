@@ -1,46 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_algo.c                                        :+:      :+:    :+:   */
+/*   rotate_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 12:08:56 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/05 11:55:26 by mjeyavat         ###   ########.fr       */
+/*   Created: 2022/01/06 12:36:35 by mjeyavat          #+#    #+#             */
+/*   Updated: 2022/01/06 13:03:23 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-static void	pop_stack(t_node **st_from, t_node **st_to)
+int	rra(t_node **stack_a)
 {
-	t_node	*head;
-
-	if (!(*st_to))
-	{
-		(*st_to) = (*st_from);
-		(*st_from) = (*st_from)->next;
-		(*st_to)->next = NULL;
-	}
-	else
-	{
-		head = (*st_from);
-		(*st_from) = (*st_from)->next;
-		head->next = (*st_to);
-		(*st_to) = head;
-	}
-}
-
-int	pb(t_opp *opp)
-{
-	pop_stack(&opp->stack_a, &opp->stack_b);
-	write(1, "pb\n", 3);
+	rotat_stack_down(stack_a);
+	write(1, "rra\n", 4);
 	return (1);
 }
 
-int	pa(t_opp *opp)
+int	ra(t_node **stack_a)
 {
-	pop_stack(&opp->stack_b, &opp->stack_a);
-	write(1, "pa\n", 3);
+	rotat_stack_up(stack_a);
+	write(1, "ra\n", 3);
+	return (1);
+}
+
+int	rb(t_node **stack_b)
+{
+	rotat_stack_up(stack_b);
+	write(1, "rb\n", 3);
+	return (1);
+}
+
+int	rr(t_opp *opp)
+{
+	ra(&opp->stack_a);
+	rb(&opp->stack_b);
+	write(1, "rr\n", 3);
 	return (1);
 }

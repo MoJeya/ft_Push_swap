@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:55:51 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/06 13:42:17 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/06 14:26:45 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	swap_three(t_opp *op);
 void	swap_five(t_opp *op);
 int		lst_find_pos(t_opp *op, int val, int option);
 void	choose_opperation(t_opp *op);
+int		sort_big_stack(t_opp *op);
 //int		ft_findmin_val(t_opp *op, int val);
 //int		data_on_pos(t_opp *op, int pos, int option);
 //int		is_num_lst(t_opp *op, int num);

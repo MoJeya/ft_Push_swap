@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:19:27 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/06 13:51:36 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/06 14:22:39 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,68 +65,40 @@ void	swap_three(t_opp *op)
 		rra(&op->stack_a);
 }
 
-//int	push_back_a(t_opp *op)
-//{
-//	int	h1;
-//	int	cnt;
-//	int	opps_cost;
+int	is_sorted_a(t_opp *op)
+{
+	t_node	*current;
 
-//	h1 = 0;
-//	cnt = 0;
-//	opps_cost = 0;
-//	while (list_lenght(op, 2) > 0)
-//	{
-//		cnt = 0;
-//		h1 = lst_find_pos(op, max_n(op, 2), 2);
-//		if (h1 > list_lenght(op, 2) / 2)
-//		{
-//			h1 = list_lenght(op, 2) - h1;
-//			while (cnt < h1)
-//			{
-//				opps_cost += ft_revrot(&op->stack_b);
-//				cnt++;
-//			}
-//		}
-//		else if (h1 <= list_lenght(op, 2) / 2)
-//		{
-//			while (cnt < h1)
-//			{
-//				opps_cost += ft_rot(&op->stack_b);
-//				write(1, "rb\n", 3);
-//				cnt++;
-//			}
-//		}
-//		opps_cost += pa(op);
-//	}
-//	//ft_printf("Rotation Cost: %d\n", opps_cost);
-//	return (opps_cost);
-//}
-
-//void	swap_100(t_opp *op)
-//{
-//	int	addi;
-//	int	r_start;
-//	int	r_end;
-
-//	r_start = 0;
-//	r_end = 25;
-//	addi = 0;
-//	//ft_printf("=====================chunk %d\n", num);
-//	find_num_ver2(op, &addi, r_start, r_end);
-//	//addi += push_back_a(op);
-//	//ft_printf("Opperation cost = %d\n", addi);
-//}
+	current = op->stack_a;
+	while (current->next != NULL)
+	{
+		if (current->rank < current->next->rank)
+			current = current->next;
+		else
+			break ;
+	}
+	if (current->next == NULL)
+	{
+		ft_printf("Everything is sorted\n");
+		exit(0);
+	}
+	return (1);
+}
 
 void	choose_opperation(t_opp *op)
 {
 	int	ce;
 
-	ce = list_lenght(op, 1);
-	if (ce <= 3 && ce >= 0)
-		swap_three(op);
-	if (ce <= 5 && ce > 3)
-		swap_five(op);
-	//else if (ce > 5)
-		//big_stacksort(op);
+	ce = 0;
+	if (is_sorted_a(op) == 1)
+	{
+		ce = list_lenght(op, 1);
+		if (ce <= 3)
+			swap_three(op);
+		else if (ce <= 5 && ce > 3)
+			swap_five(op);
+		//else
+		//	sort_big_stack(op); // wird in einem
+	}
 	ft_printf("list lenght: %d\n", list_lenght(op, 1));
 }

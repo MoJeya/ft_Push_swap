@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:35:03 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/06 13:41:28 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/08 13:53:15 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,26 @@ int	get_char(char *str)
 		return (1);
 }
 
-void	change_range(int *r_start, int *r_end)
+int	data_on_pos(t_opp *op, int pos, int option)
 {
-	(*r_start) = (*r_end);
-	(*r_end) += 25;
+	int		data;
+	t_node	*tmp;
+
+	data = 0;
+	tmp = NULL;
+	if (option == 1)
+		tmp = op->stack_a;
+	else if (option == 2)
+		tmp = op->stack_b;
+	if (pos == 0)
+		return (tmp->data);
+	while (pos > 0 && tmp->next != NULL)
+	{
+		tmp = tmp->next;
+		data = tmp->data;
+		pos--;
+	}
+	if (pos < 0)
+		return (tmp->data);
+	return (data);
 }

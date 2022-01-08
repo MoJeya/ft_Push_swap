@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:09:18 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/06 13:50:44 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/08 13:59:42 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,8 @@ int	main(int argc, char *argv[])
 	else
 		ft_printf("argument invalid!\n");
 	set_rankloop(opps->stack_a);
-	ft_print_list(opps);
-	ft_printf("\n");
 	choose_opperation(opps);
-	ft_printf("\n");
-	ft_print_list(opps);
+	//ft_print_list(opps);
 	//system("leaks push_swap");
 	return (0);
 }

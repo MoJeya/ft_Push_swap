@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:09:18 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/10 15:05:07 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/10 19:58:52 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 /*
 	TODO:
+		every thing works, now get wallgrind working and find the leaks!
 		the user input with on stirng has to be reworked
 		//////(Mohan) finsih Operations rr and rrr
 		////(Mohan) Opperation's coner cases has to be done
@@ -55,7 +56,7 @@ t_node	*convert_str_lst(const char *str, t_node	**head)
 	tmp = ft_split(str, ' ');
 	while (*tmp != NULL)
 	{
-		if (get_char(*tmp) != 0)
+		if (get_char(*tmp) == 0)
 		{
 			lst = create_node(ft_atoi(*tmp), 0);
 			lst->next = *head;

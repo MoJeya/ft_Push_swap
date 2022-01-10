@@ -6,7 +6,7 @@
 #    By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/12 18:30:01 by mjeyavat          #+#    #+#              #
-#    Updated: 2022/01/10 18:06:07 by mjeyavat         ###   ########.fr        #
+#    Updated: 2022/01/10 18:18:15 by mjeyavat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,11 @@ BONUS = ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
 all: $(NAME)
 
 $(NAME):
-	gcc -c -Wall -Wextra -Werror *.c
+	gcc -c *.c
 	ar cr $(NAME) *.o
 
 bonus:
-	gcc -c -Wall -Wextra -Werror $(BONUS)
+	gcc -c  $(BONUS)
 	ar cr $(NAME) *.o
 
 .PHONY: clean fclean re
@@ -46,4 +46,4 @@ fclean: clean
 
 re : fclean all
 
-visual: python3 pyviz.py `ruby -e "puts (0..100).to_a.shuffle.join(' ')"`
+

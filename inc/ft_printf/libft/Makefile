@@ -6,7 +6,7 @@
 #    By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/12 18:30:01 by mjeyavat          #+#    #+#              #
-#    Updated: 2021/07/29 15:36:49 by mjeyavat         ###   ########.fr        #
+#    Updated: 2022/01/10 18:06:07 by mjeyavat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,3 +45,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re : fclean all
+
+visual: python3 pyviz.py `ruby -e "puts (0..100).to_a.shuffle.join(' ')"`

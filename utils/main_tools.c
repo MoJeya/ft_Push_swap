@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:35:03 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/08 13:53:15 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/10 14:07:50 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ void	ft_print_list(t_opp *opp)
 	{
 		if (tmp_a)
 		{
-			ft_printf("[%d][%d]", tmp_a->data, tmp_a->rank);
+			ft_printf("[%d][%d]", tmp_a->rank, tmp_a->data);
 			tmp_a = tmp_a->next;
 		}
 		ft_printf("	");
 		if (tmp_b)
 		{
-			ft_printf("[%d][%d]", tmp_b->data, tmp_b->rank);
+			ft_printf("[%d][%d]", tmp_b->rank, tmp_b->data);
 			tmp_b = tmp_b->next;
 		}
 		ft_printf("\n");
@@ -72,10 +72,11 @@ int	get_char(char *str)
 	int	i;
 
 	i = 0;
-	if (ft_atoi(str))
+	if (ft_atoi(str) || ft_atoi(str) == 0)
 		return (i);
 	else
 		return (1);
+	return (1);
 }
 
 int	data_on_pos(t_opp *op, int pos, int option)

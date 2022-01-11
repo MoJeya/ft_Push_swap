@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 18:19:27 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/10 17:59:06 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/11 20:53:51 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	choose_opperation(t_opp *op)
 	int	ce;
 
 	ce = 0;
-	if (is_sorted_a(op) == 1)
+	if (is_sorted_a(op) == 1 && check_dup(op) == 1)
 	{
 		ce = list_lenght(op, 1);
 		if (ce <= 3)
@@ -95,6 +95,6 @@ void	choose_opperation(t_opp *op)
 		else if (ce <= 5 && ce > 3)
 			swap_five(op);
 		else
-			sort_big_stack(op, ce); // wird in einem
+			sort_big_stack(op, ce);
 	}
 }

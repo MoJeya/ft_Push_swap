@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:55:51 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/10 18:57:14 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/11 20:36:00 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int		lst_find_pos(t_opp *op, int val, int option);
 void	choose_opperation(t_opp *op);
 int		sort_big_stack(t_opp *op, int list_len);
 int		is_sorted_a(t_opp *op);
+int		check_dup(t_opp *op);
 void	pick_set(int *chunk_x, int *end, int list_len);
 int		push_back_a(t_opp *op);
 

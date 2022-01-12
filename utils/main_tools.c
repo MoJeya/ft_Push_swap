@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:35:03 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/11 19:38:40 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/12 22:00:14 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,26 @@ void	revers_lst(t_node **head)
 	(*head) = prv;
 }
 
+int	check_str_input(char *str)
+{
+	int	str_len;
+	int	i;
+
+	str_len = ft_strlen(str);
+	i = 0;
+	if (str == NULL)
+		return (0);
+	while (*str)
+	{
+		if (*str == ' ')
+			i++;
+		str++;
+	}
+	if (i == str_len)
+		return (0);
+	return (1);
+}
+
 void	ft_print_list(t_opp *opp)
 {
 	t_node			*tmp_a;
@@ -67,16 +87,57 @@ void	ft_print_list(t_opp *opp)
 	}
 }
 
+long	ft_l_atoi(const char *str)
+{
+	long	i;
+	long	result;
+	long	negativ;
+
+	result = 0;
+	negativ = 1;
+	i = 0;
+	while (((str[i] >= 9) && (str[i] <= 13)) || (str[i] == 32))
+		i++;
+	if (str[i] == '-')
+	{
+		negativ = -1;
+		i++;
+	}
+	else if (str[i] == '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + (str[i] - '0');
+		if (result == 2147483647)
+			break ;
+		i++;
+	}
+	return (result * negativ);
+}
+
 int	get_char(char *str)
 {
-	int	i;
+	int		i;
+	long	tmp_num;
+	char	*tmp;
 
-	i = 0;
-	if (ft_atoi(str) || ft_atoi(str) == 0)
-		return (i);
-	else
-		return (1);
-	return (1);
+	i = 1;
+	tmp_num = 0;
+	tmp = str;
+	tmp_num = ft_l_atoi(tmp);
+	if (tmp_num < -2147483648 || tmp_num > 2147483647)
+		i = 0;
+	if (*tmp == '-')
+		tmp++;
+	if (!ft_isdigit(*tmp))
+		i = 0;
+	while (*tmp)
+	{
+		if (ft_isdigit((*tmp)) != 1)
+			i = 0;
+		tmp++;
+	}
+	return (i);
 }
 
 int	data_on_pos(t_opp *op, int pos, int option)

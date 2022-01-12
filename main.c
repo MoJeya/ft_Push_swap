@@ -6,15 +6,15 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:09:18 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/11 21:03:33 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/12 22:28:01 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/push_swap.h"
 
 /*
-	TODO:double numbers has to be handleld
-		every thing works, now get wallgrind working and find the leaks!
+	TODO: every thing works, now get wallgrind working and find the leaks!
+		//double numbers has to be handleld
 		//the user input with on stirng has to be reworked
 		//////(Mohan) finsih Operations rr and rrr
 		////(Mohan) Opperation's coner cases has to be done
@@ -25,101 +25,60 @@
 		/////(Mohan) Learn about linked lilst (again) for maximum effecity
 */
 
-// static void	creat_lst(int argc, char *argv[], t_node **head)
-// {
-// 	t_node	*tmp;
-// 	int		j;
-
-// 	j = argc - 1;
-// 	while (j >= 1)
-// 	{
-// 		if (get_char(argv[j]) == 0)
-// 		{
-// 			tmp = create_node(ft_atoi(argv[j]), 0);
-// 			tmp->next = *head;
-// 			*head = tmp;
-// 		}
-// 		else
-// 		{
-// 			ft_printf("Error\n");
-// 			exit(1);
-// 		}
-// 		j--;
-// 	}
-// }
-// static int	arg_size(char *str)
-// {
-// 	int size;
-
-// 	size = 0;
-// 	while (*str)
-// 	{
-// 		str++;
-// 		size++;
-// 	}
-// 	return (size);
-// }
-
 int	check_dup(t_opp *op)
 {
 	t_node	*head;
-	t_node	*to_compare;
+	t_node	*cmp_to;
 	int		flag;
 
 	head = op->stack_a;
-	to_compare = op->stack_a;
 	flag = 0;
-	while (head)
+	while (head->next != NULL)
 	{
-		while (to_compare->next != NULL)
+		cmp_to = head->next;
+		while (cmp_to->next != NULL)
 		{
-			//printf("Data: %d, Data to compare: %d\n", head->data, to_compare->next->data);
-			if (head->data == to_compare->next->data)
-				return (1);
-			to_compare = to_compare->next;
+			if (head->data == cmp_to->data)
+				flag++;
+			cmp_to = cmp_to->next;
 		}
+		if (head->data == cmp_to->data)
+			flag++;
 		head = head->next;
-		to_compare = op->stack_a;
 	}
-	//ft_print_list(op);
+	if (flag > 0)
+		write(2, "Error\n", 6);
 	return (flag);
 }
 
-void	convert_str_lst(char *argv[], t_node	**head)
+void	convert_str_lst(char *argv[], t_node **head)
 {
 	char	**tmp;
 	t_node	*lst;
 	int		i;
 
 	i = 1;
+	if (check_str_input(argv[i]) == 0)
+		error_exit();
 	while (argv[i])
 	{
 		tmp = ft_split(argv[i], ' ');
 		while (*tmp != NULL)
 		{
-			if (get_char(*tmp) == 0)
+			if (get_char(*tmp) == 1)
 			{
 				lst = create_node(ft_atoi(*tmp), 0);
 				lst->next = *head;
 				*head = lst;
 			}
 			else
-			{
-				ft_printf("Error\n");
-				exit(1);
-			}
+				error_exit();
 			tmp++;
 		}
 		i++;
 	}
 	revers_lst(head);
 }
-
-/**
- * look at the first value in current and compare
- * it to every value in the list, throug iteration
- *
-*/
 
 void	set_rank(t_node **stack_a, t_node *current)
 {
@@ -146,19 +105,6 @@ void	set_rankloop(t_node *stack_a)
 	}
 }
 
-// static int check_input(char *str)
-// {
-// 	int cnt;
-
-// 	cnt = 0;
-// 	while (*str)
-// 	{
-// 		str++;
-// 		cnt++;
-// 	}
-// 	return (cnt);
-// }
-
 int	main(int argc, char *argv[])
 {
 	t_opp	*opps;
@@ -168,11 +114,15 @@ int	main(int argc, char *argv[])
 	opps->stack_b = NULL;
 	if (argc >= 2)
 		convert_str_lst(argv, &opps->stack_a);
+	else if (argc == 1)
+		exit(EXIT_SUCCESS);
 	else
-		ft_printf("argument invalid!\n");
+	{
+		write(2, "Error\n", 6);
+		exit(1);
+	}
 	set_rankloop(opps->stack_a);
 	choose_opperation(opps);
-	ft_print_list(opps);
 	//system("leaks push_swap");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 15:12:59 by mjeyavat          #+#    #+#             */
-/*   Updated: 2021/07/15 16:12:13 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/12 20:30:29 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	ft_atoi(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + (str[i] - '0');
+		if (result == 2147483647)
+			break ;
 		i++;
 	}
 	return (result * negativ);

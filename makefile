@@ -1,6 +1,6 @@
 NAME =		push_swap
 
-CFLAGS =	-Wall -Wextra -Werror
+CFLAGS =	-Wall -Wextra -Werror -g
 
 SOURCE =	main.c \
 			./utils/main_tools.c ./opps/push_algo.c ./opps/swap_algo.c ./opps/rot_algo.c \

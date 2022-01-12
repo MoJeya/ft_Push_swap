@@ -6,11 +6,17 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 18:02:23 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/10 19:44:21 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/12 21:29:26 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+
+void	error_exit(void)
+{
+	write(2, "Error\n", 6);
+	exit(1);
+}
 
 /**
  * Radix sort will be implemented here

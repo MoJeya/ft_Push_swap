@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/30 15:25:43 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/11 17:55:27 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/13 00:42:03 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,5 @@ char	**ft_split(char const *s, char c)
 		cnt = cnt_2;
 	}
 	result[i] = NULL;
-	free(*result);
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 15:33:29 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/12 22:33:46 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/12 22:51:29 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,42 @@ t_node	*rotat_stack_down(t_node **stack)
  * !hat leak
 */
 
+// t_node	*rotat_stack_up(t_node **stack)
+// {
+// 	t_node	*lastnode;
+// 	t_node	*newnode;
+
+// 	newnode = create_node((*stack)->data, (*stack)->rank);
+// 	if (!(*stack) || (*stack)->next == NULL)
+// 		return ((*stack));
+// 	(*stack) = (*stack)->next;
+// 	lastnode = (*stack);
+// 	while (lastnode->next != NULL)
+// 	{
+// 		lastnode = lastnode->next;
+// 	}
+// 	lastnode->next = newnode;
+// 	return (lastnode);
+// }
+t_node	*ft_last(t_node *lst)
+{
+	while (lst)
+	{
+		if (lst && !lst->next)
+			return (lst);
+		lst = lst->next;
+	}
+	return (lst);
+}
+
 t_node	*rotat_stack_up(t_node **stack)
 {
-	t_node	*lastnode;
-	t_node	*newnode;
+	t_node	*tmp;
 
-	newnode = create_node((*stack)->data, (*stack)->rank);
-	if (!(*stack) || (*stack)->next == NULL)
-		return ((*stack));
-	(*stack) = (*stack)->next;
-	lastnode = (*stack);
-	while (lastnode->next != NULL)
-	{
-		lastnode = lastnode->next;
-	}
-	lastnode->next = newnode;
-	return (lastnode);
+	tmp = ft_last(*stack);
+	tmp->next = *stack;
+	tmp = *stack;
+	*stack = (*stack)->next;
+	tmp->next = NULL;
+	return (*stack);
 }

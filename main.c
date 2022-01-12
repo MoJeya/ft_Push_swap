@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:09:18 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/12 22:28:01 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/13 00:42:32 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,31 +51,49 @@ int	check_dup(t_opp *op)
 	return (flag);
 }
 
+void	free_ar(char **str)
+{
+	int		i;
+
+	if (!str)
+		return ;
+	i = 0; 
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
+
 void	convert_str_lst(char *argv[], t_node **head)
 {
 	char	**tmp;
 	t_node	*lst;
 	int		i;
+	int		c;
 
 	i = 1;
 	if (check_str_input(argv[i]) == 0)
-		error_exit();
+		error_ex();
 	while (argv[i])
 	{
 		tmp = ft_split(argv[i], ' ');
-		while (*tmp != NULL)
+		c = 0;
+		while (tmp[c])
 		{
-			if (get_char(*tmp) == 1)
+			if (get_char(tmp[c]) == 1)
 			{
-				lst = create_node(ft_atoi(*tmp), 0);
+				lst = create_node(ft_atoi(tmp[c]), 0);
 				lst->next = *head;
 				*head = lst;
 			}
 			else
-				error_exit();
-			tmp++;
+				error_ex();
+			c++;
 		}
 		i++;
+		free_ar(tmp);
 	}
 	revers_lst(head);
 }
@@ -122,6 +140,7 @@ int	main(int argc, char *argv[])
 		exit(1);
 	}
 	set_rankloop(opps->stack_a);
+	//ft_print_list(opps);
 	choose_opperation(opps);
 	//system("leaks push_swap");
 	return (0);

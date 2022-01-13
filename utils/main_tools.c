@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 15:35:03 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/12 22:00:14 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/13 18:29:06 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,30 +62,30 @@ int	check_str_input(char *str)
 	return (1);
 }
 
-void	ft_print_list(t_opp *opp)
-{
-	t_node			*tmp_a;
-	t_node			*tmp_b;
+// void	ft_print_list(t_opp *opp)
+// {
+// 	t_node			*tmp_a;
+// 	t_node			*tmp_b;
 
-	tmp_a = opp->stack_a;
-	tmp_b = opp->stack_b;
-	ft_printf("A:	 B:\n");
-	while (tmp_a != NULL || tmp_b != NULL)
-	{
-		if (tmp_a)
-		{
-			ft_printf("[%d][%d]", tmp_a->rank, tmp_a->data);
-			tmp_a = tmp_a->next;
-		}
-		ft_printf("	");
-		if (tmp_b)
-		{
-			ft_printf("[%d][%d]", tmp_b->rank, tmp_b->data);
-			tmp_b = tmp_b->next;
-		}
-		ft_printf("\n");
-	}
-}
+// 	tmp_a = opp->stack_a;
+// 	tmp_b = opp->stack_b;
+// 	ft_printf("A:	 B:\n");
+// 	while (tmp_a != NULL || tmp_b != NULL)
+// 	{
+// 		if (tmp_a)
+// 		{
+// 			ft_printf("[%d][%d]", tmp_a->rank, tmp_a->data);
+// 			tmp_a = tmp_a->next;
+// 		}
+// 		ft_printf("	");
+// 		if (tmp_b)
+// 		{
+// 			ft_printf("[%d][%d]", tmp_b->rank, tmp_b->data);
+// 			tmp_b = tmp_b->next;
+// 		}
+// 		ft_printf("\n");
+// 	}
+// }
 
 long	ft_l_atoi(const char *str)
 {

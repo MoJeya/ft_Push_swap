@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 12:08:56 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/10 18:04:49 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/13 18:52:30 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,8 @@ int	pa(t_opp *opp)
 
 void	put_stack_back(t_opp *op)
 {
-	//1. pushe alles von b nach a bis auf das letzte
 	while (op->stack_b->next != NULL)
 		pa(op);
-	//2. schau ob stack_b noch ein wert hat
 	if (list_lenght(op, 2) == 1)
 		pa(op);
 }

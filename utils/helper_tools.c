@@ -6,11 +6,26 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 18:24:37 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/06 12:49:51 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/13 18:52:05 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+
+void	free_ar(char **str)
+{
+	int		i;
+
+	if (!str)
+		return ;
+	i = 0; 
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
 
 int	list_lenght(t_opp *op, int stack_option)
 {
@@ -48,7 +63,6 @@ int	max_n(t_opp *op, int option)
 		if (max_val < tmp->rank)
 			max_val = tmp->rank;
 	}
-	//ft_printf("The Biggest value: %d\n", max_val);
 	return (max_val);
 }
 
@@ -90,24 +104,3 @@ int	lst_find_pos(t_opp *op, int val, int option)
 		return (-1);
 	return (pos);
 }
-
-//int	is_num_lst(t_opp *op, int num)
-//{
-//	int		flag;
-//	t_node	*tmp;
-
-//	tmp = op->stack_a;
-//	flag = 0;
-//	while (tmp != NULL)
-//	{
-//		if (tmp->data == num)
-//		{
-//			flag = 0;
-//			break ;
-//		}
-//		else
-//			flag = 1;
-//		tmp = tmp->next;
-//	}
-//	return (flag);
-//}

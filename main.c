@@ -6,14 +6,15 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 16:09:18 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/13 00:42:32 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/13 19:15:10 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/push_swap.h"
 
 /*
-	TODO: every thing works, now get wallgrind working and find the leaks!
+	//TODO: Make code clean
+		//every thing works, now get wallgrind working and find the leaks!
 		//double numbers has to be handleld
 		//the user input with on stirng has to be reworked
 		//////(Mohan) finsih Operations rr and rrr
@@ -51,21 +52,6 @@ int	check_dup(t_opp *op)
 	return (flag);
 }
 
-void	free_ar(char **str)
-{
-	int		i;
-
-	if (!str)
-		return ;
-	i = 0; 
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
-
 void	convert_str_lst(char *argv[], t_node **head)
 {
 	char	**tmp;
@@ -74,6 +60,7 @@ void	convert_str_lst(char *argv[], t_node **head)
 	int		c;
 
 	i = 1;
+	lst = NULL;
 	if (check_str_input(argv[i]) == 0)
 		error_ex();
 	while (argv[i])
@@ -83,11 +70,7 @@ void	convert_str_lst(char *argv[], t_node **head)
 		while (tmp[c])
 		{
 			if (get_char(tmp[c]) == 1)
-			{
-				lst = create_node(ft_atoi(tmp[c]), 0);
-				lst->next = *head;
-				*head = lst;
-			}
+				create_list(tmp[c], head, lst);
 			else
 				error_ex();
 			c++;
@@ -140,8 +123,6 @@ int	main(int argc, char *argv[])
 		exit(1);
 	}
 	set_rankloop(opps->stack_a);
-	//ft_print_list(opps);
 	choose_opperation(opps);
-	//system("leaks push_swap");
 	return (0);
 }

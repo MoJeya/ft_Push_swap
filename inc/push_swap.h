@@ -6,7 +6,7 @@
 /*   By: mjeyavat <mjeyavat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 15:55:51 by mjeyavat          #+#    #+#             */
-/*   Updated: 2022/01/13 00:17:36 by mjeyavat         ###   ########.fr       */
+/*   Updated: 2022/01/13 18:31:25 by mjeyavat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,36 +56,9 @@ int		is_sorted_a(t_opp *op);
 int		check_dup(t_opp *op);
 long	ft_l_atoi(const char *str);
 void	pick_set(int *chunk_x, int *end, int list_len);
-int		push_back_a(t_opp *op);
+//int		push_back_a(t_opp *op);
+void	free_ar(char **str);
 int		check_str_input(char *str);
+void	create_list(char *str, t_node **head, t_node *lst);
 void	error_ex(void);
 #endif
-
-// void	convert_str_lst(char *argv[], t_node **head)
-// {
-// 	char	**tmp;
-// 	t_node	*lst;
-// 	int		i;
-
-// 	i = 1;
-// 	if (check_str_input(argv[i]) == 0)
-// 		error_exit();
-// 	while (argv[i])
-// 	{
-// 		tmp = ft_split(argv[i], ' ');
-// 		while (*tmp != NULL)
-// 		{
-// 			if (get_char(*tmp) == 1)
-// 			{
-// 				lst = create_node(ft_atoi(*tmp), 0);
-// 				lst->next = *head;
-// 				*head = lst;
-// 			}
-// 			else
-// 				error_exit();
-// 			tmp++;
-// 		}
-// 		i++;
-// 	}
-// 	revers_lst(head);
-// }
